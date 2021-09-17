@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="bundle.js" defer></script>
+  </head>
+  <body>
+    <header><h1>To-Do List</h1></header>
+    <nav>
+      <button class="inbox">Inbox</button>
+      <button class="today">Today</button>
+      <button class="this-week">This week</button>
+      <h2>Projects</h2>
+      <button class="add-project_btn">Add project</button>
+    </nav>
+    <main>
+      <div class="list-container">
+        <ul></ul>
+      </div>
+
+      <button class="add-task__btn">Add task</button>
+      <form class="add-new-task inactive">
+        <label for="form-title">Title</label>
+        <input type="text" id="form-title" required />
+        <label for="form-description">Description</label>
+        <input type="text" id="form-description" required />
+        <label for="form-due-date">Due date</label>
+        <input type="date" id="form-due-date" />
+        <label for="form-priority">Priority</label>
+        <select id="form-priority" required>
+          <option value="normal">Normal</option>
+          <option value="high">High</option>
+        </select>
+        <div>
+          <button type="button">Cancel</button>
+          <button type="submit">Add task</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
