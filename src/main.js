@@ -13,6 +13,7 @@ import {
   inboxBtn,
   todayFilterBtn,
   listContainer,
+  weeklyBtn,
 } from "./components/DOM";
 
 const taskList = [];
@@ -69,5 +70,9 @@ inboxBtn.addEventListener("click", function(){
 
 todayFilterBtn.addEventListener("click", function(){
   rerenderUl("today");
+})
+
+weeklyBtn.addEventListener("click", function(){
+  rerenderUl("week");
 })
 

@@ -224,7 +224,7 @@ li {
   border-radius: 50%;
   width: 1.7rem;
   height: 1.7rem;
-  background-color: red;
+  background-color: transparent;
   transform: translate(0.6rem, -0.6rem);
 }
 
