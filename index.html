@@ -11,16 +11,18 @@
     <header><h1>To-Do List</h1></header>
     <nav>
       <button class="inbox">Inbox</button>
+      <button class="high-priority">High priority</button>
       <button class="today">Today</button>
       <button class="this-week">This week</button>
       <h2>Projects</h2>
       <button class="add-project_btn">Add project</button>
+      <form>
+        <input type="text" placeholder="Project name" required>
+        <button type="submit">+</button>
+      </form>
+      <div class="projects"></div>
     </nav>
     <main>
-      <div class="list-container">
-        <ul></ul>
-      </div>
-
       <button class="add-task__btn">Add task</button>
       <form class="add-new-task inactive">
         <label for="form-title">Title</label>
@@ -34,11 +36,18 @@
           <option value="normal">Normal</option>
           <option value="high">High</option>
         </select>
+        <label for="belogn-project">Project</label>
+        <select id="belogn-project"></select>
         <div>
           <button type="button">Cancel</button>
           <button type="submit">Add task</button>
         </div>
       </form>
+
+      <div class="list-container">
+        <ul></ul>
+      </div>
+
     </main>
   </body>
 </html>
