@@ -22,6 +22,7 @@ const formCancelBtn = document.querySelector("form button[type='button']");
 const inboxBtn = document.querySelector(".inbox");
 const todayFilterBtn = document.querySelector(".today");
 const weeklyBtn = document.querySelector(".this-week");
+const highPriorityBtn = document.querySelector(".high-priority");
 const addProjectBtn = document.querySelector(".add-project_btn");
 const listContainer = document.querySelector(".list-container");
 
@@ -58,4 +59,5 @@ export {
   weeklyBtn,
   addProjectBtn,
   listContainer,
+  highPriorityBtn,
 };

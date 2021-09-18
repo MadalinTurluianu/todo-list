@@ -14,6 +14,7 @@ import {
   todayFilterBtn,
   listContainer,
   weeklyBtn,
+  highPriorityBtn,
 } from "./components/DOM";
 
 const taskList = [];
@@ -66,6 +67,10 @@ function rerenderUl(filterType) {
 
 inboxBtn.addEventListener("click", function(){
   rerenderUl("inbox");
+})
+
+highPriorityBtn.addEventListener("click", function(){
+  rerenderUl("high priority");
 })
 
 todayFilterBtn.addEventListener("click", function(){

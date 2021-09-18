@@ -4,6 +4,10 @@ function createFilteredList(filterType, originList) {
   let filteredArray;
   if (filterType === "inbox") {
     filteredArray = originList;
+  } else if (filterType === "high priority") {
+    filteredArray = originList.filter(
+      (task) => task.taskObj.priority === "high"
+    );
   } else if (filterType === "today") {
     filteredArray = originList.filter((task) => {
       let taskDate = new Date(task.taskObj.dueDate)
