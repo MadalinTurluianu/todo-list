@@ -16,6 +16,11 @@
       <button class="this-week">This week</button>
       <h2>Projects</h2>
       <button class="add-project_btn">Add project</button>
+      <form>
+        <input type="text" placeholder="Project name" required>
+        <button type="submit">+</button>
+      </form>
+      <div class="projects"></div>
     </nav>
     <main>
       <button class="add-task__btn">Add task</button>
@@ -31,6 +36,8 @@
           <option value="normal">Normal</option>
           <option value="high">High</option>
         </select>
+        <label for="belogn-project">Project</label>
+        <select id="belogn-project"></select>
         <div>
           <button type="button">Cancel</button>
           <button type="submit">Add task</button>

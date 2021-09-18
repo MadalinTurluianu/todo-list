@@ -79,6 +79,13 @@ nav button {
   font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
+.projects {
+  width: 100%;
+  @include display-flex();
+  flex-direction: column;
+  align-items: center;
+}
+
 nav button:hover,
 nav button:focus {
   background-color: $secondary-color;
@@ -101,7 +108,7 @@ main {
   border-radius: 15px;
 }
 
-form {
+main form {
   display: grid;
   align-items: center;
   justify-content: start;
@@ -116,14 +123,14 @@ form {
   border-radius: 15px;
 }
 
-form div {
+main form div {
   @include display-flex();
   align-items: center;
   justify-content: space-around;
   grid-column: 1 / 3;
 }
 
-form button {
+main form button {
   background-color: $primary-color;
   color: $primary-font-color;
   border-radius: 15px;
@@ -131,8 +138,8 @@ form button {
   margin-top: 1rem;
 }
 
-input,
-select {
+main input,
+main select {
   height: 1.2rem;
   border: none;
   border-radius: 5px;
@@ -144,7 +151,7 @@ label {
   text-align: center;
 }
 
-input {
+main input {
   background-color: $primary-color;
 }
 

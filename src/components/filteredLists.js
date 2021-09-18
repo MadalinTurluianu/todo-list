@@ -1,13 +1,22 @@
-function createFilteredList(filterType, originList) {
+function createFilteredList(filterType, originList, projectName = "") {
   const filteredList = document.createElement("ul");
   let currentDate = new Date().toString().split(" ").slice(0, 4).join(" ");
   let filteredArray;
+
+  // ------------------------------------------------ Inbox
+
   if (filterType === "inbox") {
     filteredArray = originList;
+
+    // ---------------------------------------------- HP filter
+
   } else if (filterType === "high priority") {
     filteredArray = originList.filter(
       (task) => task.taskObj.priority === "high"
     );
+
+    // ---------------------------------------------- daily filter
+
   } else if (filterType === "today") {
     filteredArray = originList.filter((task) => {
       let taskDate = new Date(task.taskObj.dueDate)
@@ -17,6 +26,9 @@ function createFilteredList(filterType, originList) {
         .join(" ");
       return taskDate === currentDate;
     });
+
+     // ---------------------------------------------- weekly filter
+
   } else if (filterType === "week") {
     filteredArray = originList.filter((task) => {
       const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -39,6 +51,11 @@ function createFilteredList(filterType, originList) {
         }
       }
     });
+
+      // ---------------------------------------------- filter by project
+
+  } else if (filterType === "project") {
+    filteredArray = originList.filter((task) => projectName === task.taskObj.project);
   }
 
   filteredArray.map((task) => {

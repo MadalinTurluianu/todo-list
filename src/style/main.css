@@ -64,6 +64,16 @@ nav button {
   font-size: clamp(0.8rem, 3vw, 1rem);
 }
 
+.projects {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 nav button:hover,
 nav button:focus {
   background-color: #1b1b1b;
@@ -89,7 +99,7 @@ main {
   border-radius: 15px;
 }
 
-form {
+main form {
   display: grid;
   align-items: center;
   justify-content: start;
@@ -104,7 +114,7 @@ form {
   border-radius: 15px;
 }
 
-form div {
+main form div {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -114,7 +124,7 @@ form div {
   grid-column: 1/3;
 }
 
-form button {
+main form button {
   background-color: #f2f2f2;
   color: #353d40;
   border-radius: 15px;
@@ -122,8 +132,8 @@ form button {
   margin-top: 1rem;
 }
 
-input,
-select {
+main input,
+main select {
   height: 1.2rem;
   border: none;
   border-radius: 5px;
@@ -135,7 +145,7 @@ label {
   text-align: center;
 }
 
-input {
+main input {
   background-color: #f2f2f2;
 }
 

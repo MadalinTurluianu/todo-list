@@ -10,7 +10,7 @@ import {
 } from "./colors.js";
 
 class Task {
-  constructor(title, description, dueDate, priority) {
+  constructor(title, description, dueDate, priority, project) {
     this.title = title.value;
     this.description = description.value;
     this.dueDate =
@@ -18,11 +18,12 @@ class Task {
         ? ""
         : new Date(dueDate.value).toString().split(" ").slice(1, 4).join(" ");
     this.priority = priority.value;
+    this.project = project.value;
   }
 }
 
-function createTask(title, description, dueDate, priority) {
-  const taskObj = new Task(title, description, dueDate, priority);
+function createTask(title, description, dueDate, priority, project) {
+  const taskObj = new Task(title, description, dueDate, priority, project);
 
   let taskEl = document.createElement("li");
 

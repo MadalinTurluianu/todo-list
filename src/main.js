@@ -9,6 +9,7 @@ import {
   descriptionInput,
   dueDateInput,
   priorityInput,
+  projectInput,
   formCancelBtn,
   inboxBtn,
   todayFilterBtn,

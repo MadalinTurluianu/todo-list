@@ -12,11 +12,12 @@ import {
 const nav = document.querySelector("nav");
 const main = document.querySelector("main");
 const addTaskBtn = document.querySelector(".add-task__btn");
-const form = document.querySelector("form");
+const form = document.querySelector("main form");
 const titleInput = document.querySelector("#form-title");
 const descriptionInput = document.querySelector("#form-description");
 const dueDateInput = document.querySelector("#form-due-date");
 const priorityInput = document.querySelector("#form-priority");
+const projectInput = document.querySelector("#belong-project");
 const ul = document.querySelector("ul");
 const formCancelBtn = document.querySelector("form button[type='button']");
 const inboxBtn = document.querySelector(".inbox");
@@ -52,6 +53,7 @@ export {
   descriptionInput,
   dueDateInput,
   priorityInput,
+  projectInput,
   ul,
   formCancelBtn,
   inboxBtn,
