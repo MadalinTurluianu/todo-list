@@ -9,23 +9,52 @@ import {
   shadowColor,
 } from "./colors.js";
 
+// ---------------------------------------------NAV
+
 const nav = document.querySelector("nav");
+const addRmProjBtnContainer = document.querySelector(
+  ".add-rm-project__container"
+);
+const addProjectBtn = document.querySelector(".add-project_btn");
+const rmProjectBtn = document.querySelector(".rm-project_btn");
+const projectsContainer = document.querySelector(".projects-container");
+
+// --FILTERS
+
+const inboxBtn = document.querySelector(".inbox");
+const dailyFilterBtn = document.querySelector(".today");
+const weeklyFilterBtn = document.querySelector(".this-week");
+const highPriorityFilterBtn = document.querySelector(".high-priority");
+
+// ---PROJECT FORM CONTENT
+
+const projectForm = document.querySelector(".add-project__form");
+const projectFormInput = projectForm.querySelector("input");
+const projectFormCancelBtn = projectForm.querySelector("button[type='button']");
+
+const rmProjectForm = document.querySelector(".remove-project__form");
+const selectRmProject = rmProjectForm.querySelector("select");
+const cancelRmProject = rmProjectForm.querySelector("button[type='button']");
+// ---------------------------------------------MAIN
+
 const main = document.querySelector("main");
 const addTaskBtn = document.querySelector(".add-task__btn");
-const form = document.querySelector("main form");
+const ul = document.querySelector("ul");
+const listContainer = document.querySelector(".list-container");
+
+// ---TASK FORM CONTENT
+
+const taskForm = document.querySelector(".add-task__form");
 const titleInput = document.querySelector("#form-title");
 const descriptionInput = document.querySelector("#form-description");
 const dueDateInput = document.querySelector("#form-due-date");
 const priorityInput = document.querySelector("#form-priority");
 const projectInput = document.querySelector("#belong-project");
-const ul = document.querySelector("ul");
-const formCancelBtn = document.querySelector("form button[type='button']");
-const inboxBtn = document.querySelector(".inbox");
-const todayFilterBtn = document.querySelector(".today");
-const weeklyBtn = document.querySelector(".this-week");
-const highPriorityBtn = document.querySelector(".high-priority");
-const addProjectBtn = document.querySelector(".add-project_btn");
-const listContainer = document.querySelector(".list-container");
+const taskFormCancelBtn = document.querySelector(
+  ".add-task__form button[type='button']"
+);
+
+// ---------------------------------------------LOGIC
 
 priorityInput.addEventListener("change", function () {
   if (priorityInput.value === "normal") {
@@ -38,7 +67,7 @@ priorityInput.addEventListener("change", function () {
 });
 
 addTaskBtn.addEventListener("click", function () {
-  form.classList.remove("inactive");
+  taskForm.classList.remove("inactive");
   addTaskBtn.classList.add("inactive");
   priorityInput.style.backgroundColor = normalPriorityColor;
   priorityInput.style.color = secondaryFontColor;
@@ -46,20 +75,29 @@ addTaskBtn.addEventListener("click", function () {
 
 export {
   nav,
+  addRmProjBtnContainer,
+  addProjectBtn,
+  rmProjectBtn,
+  projectsContainer,
+  inboxBtn,
+  dailyFilterBtn,
+  weeklyFilterBtn,
+  highPriorityFilterBtn,
+  projectForm,
+  projectFormInput,
+  projectFormCancelBtn,
+  rmProjectForm,
+  selectRmProject,
+  cancelRmProject,
   main,
   addTaskBtn,
-  form,
+  ul,
+  listContainer,
+  taskForm,
   titleInput,
   descriptionInput,
   dueDateInput,
   priorityInput,
   projectInput,
-  ul,
-  formCancelBtn,
-  inboxBtn,
-  todayFilterBtn,
-  weeklyBtn,
-  addProjectBtn,
-  listContainer,
-  highPriorityBtn,
+  taskFormCancelBtn,
 };

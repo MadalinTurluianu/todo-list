@@ -55,6 +55,7 @@ function createFilteredList(filterType, originList, projectName = "") {
       // ---------------------------------------------- filter by project
 
   } else if (filterType === "project") {
+    console.log(projectName);
     filteredArray = originList.filter((task) => projectName === task.taskObj.project);
   }
 
