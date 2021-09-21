@@ -42,10 +42,10 @@ function createFilteredList(filterType, originList, projectName = "") {
       let taskYear = currentDate.split(" ")[3];
       let taskIndex = week.indexOf(taskDayName);
 
-      for (let i = taskIndex; i >= taskIndex - 6; i--) {
+      for (let i = taskIndex; i <= 6; i++) {
         if (
           taskDateArr.slice(1, 4).join(" ") ===
-          `${taskMonth} ${Number(taskDay) + 1 + i - taskIndex} ${taskYear}`
+          `${taskMonth} ${Number(taskDay) + taskIndex - i} ${taskYear}`
         ) {
           return true;
         }

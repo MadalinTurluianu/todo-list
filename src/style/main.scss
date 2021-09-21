@@ -58,7 +58,10 @@ button {
   font-weight: bold;
   border: none;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 14px;
+  width: 5rem;
+  padding: 0.3rem;
+  font-size: 0.8rem;
 }
 
 input,
@@ -67,16 +70,16 @@ option {
   background-color: $input-background;
 }
 
-header {
-  width: 100%;
-}
-
 nav {
+  position: absolute;
+  top: 0;
+  z-index: 10;
   @include display-flex();
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   padding: 1rem 1rem 0 1rem;
+  height: 8rem;
 }
 
 nav h1 {
@@ -86,16 +89,19 @@ nav h1 {
 
 .nav-buttons{
   @include display-flex();
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   width: clamp(18rem, 40%, 25rem);
 }
 
-nav button {
+.wrapper {
   background-image: $glass-gradient;
+  border-radius: 14px;
   width: 5rem;
-  padding: 0.3rem;
-  font-size: 0.8rem;
+}
+
+.wrapper button {
+  background: transparent;
 }
 
 main {
@@ -104,7 +110,7 @@ main {
   align-items: center;
   width: 100%;
   height: 100%;
-  padding-top: 5rem;
+  margin-top: 10rem;
 }
 
 .add-task__btn {

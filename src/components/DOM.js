@@ -64,6 +64,11 @@ addTaskBtn.addEventListener("click", function () {
   priorityInput.classList.remove("high-priority");
 });
 
+inboxBtn.addEventListener("click", function () {
+  filtersContainerBtn.classList.add("inactive");
+  addRmProjectContainer.classList.add("inactive");
+});
+
 filtersBtn.addEventListener("click", function () {
   filtersContainerBtn.classList.remove("inactive");
   addRmProjectContainer.classList.add("inactive");

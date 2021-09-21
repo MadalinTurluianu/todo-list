@@ -8,47 +8,50 @@
     <script src="bundle.js" defer></script>
   </head>
   <body>
-    <header>
-      <nav>
-        <h1>ToDo List</h1>
+    <nav>
+      <h1>ToDo List</h1>
 
-        <div class="nav-buttons">
-          <button class="inbox">Inbox</button>
+      <div class="nav-buttons">
+        <button class="inbox">Inbox</button>
+
+        <div class="filters-wrapper wrapper">
           <button class="filters">Filters</button>
-          <button class="projects">Projects</button>
+          <div class="filters-container inactive">
+            <button class="hp-filter">Priority</button>
+            <button class="daily-filter">Daily</button>
+            <button class="weekly-filter">Weekly</button>
+          </div>
         </div>
-      </nav>
-      <div class="filters-container inactive">
-        <button class="hp-filter">High priority</button>
-        <button class="daily-filter">Today</button>
-        <button class="weekly-filter">This week</button>
-      </div>
 
-      <div class="add-rm-project__container inactive">
-        <div class="buttons-container">
-          <button class="add-project_btn">Add</button>
-          <button class="rm-project_btn">Remove</button>
+        <div class="projects-wrapper wrapper">
+          <button class="projects">Projects</button>
+          <div class="add-rm-project__container inactive">
+            <div class="buttons-container">
+              <button class="add-project_btn">Add</button>
+              <button class="rm-project_btn">Remove</button>
+            </div>
+            <form class="add-project__form inactive">
+              <input
+                type="text"
+                maxlength="14"
+                placeholder="Project name"
+                required
+              />
+              <button type="button">Cancel</button>
+              <button type="submit">Add</button>
+            </form>
+            <form class="remove-project__form inactive">
+              <select>
+                <option value="">None</option>
+              </select>
+              <button type="button">Cancel</button>
+              <button type="submit">Remove</button>
+            </form>
+            <div class="projects-container"></div>
+          </div>
         </div>
-        <form class="add-project__form inactive">
-          <input
-            type="text"
-            maxlength="14"
-            placeholder="Project name"
-            required
-          />
-          <button type="button">Cancel</button>
-          <button type="submit">Add</button>
-        </form>
-        <form class="remove-project__form inactive">
-          <select>
-            <option value="">None</option>
-          </select>
-          <button type="button">Cancel</button>
-          <button type="submit">Remove</button>
-        </form>
-        <div class="projects-container"></div>
       </div>
-    </header>
+    </nav>
 
     <main>
       <button class="add-task__btn">Add task</button>
