@@ -1,14 +1,3 @@
-import {
-  normalPriorityColor,
-  highPriorityColor,
-  primaryFontColor,
-  secondaryFontColor,
-  primaryColor,
-  secondaryColor,
-  thirdColor,
-  shadowColor,
-} from "./colors.js";
-
 class Task {
   constructor(title, description, dueDate, priority, project) {
     this.title = title.value;
@@ -38,12 +27,9 @@ function createTask(title, description, dueDate, priority, project) {
   taskDueDate.textContent = taskObj.dueDate;
   taskDueDate.className = "task-date";
 
-  if (taskObj.priority === "normal") {
-    taskEl.style.backgroundColor = normalPriorityColor;
-    taskEl.style.color = secondaryFontColor;
-  } else {
-    taskEl.style.backgroundColor = highPriorityColor;
-  }
+  if (taskObj.priority === "high") {
+    taskEl.classList.add("high-priority");
+  } 
 
   let deleteTaskBtn = document.createElement("button");
   deleteTaskBtn.className = "delete-task__btn";

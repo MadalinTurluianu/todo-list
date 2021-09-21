@@ -1,7 +1,16 @@
+$background-gradient: linear-gradient(45deg, #B993D6, #8CA6DB);
+$hp-background: linear-gradient(-45deg, rgba(248, 54, 0, 0.267), rgba(249, 213, 35, 0.514));
+$input-background: rgba(255, 255, 255, 0.603);
+$glass-gradient: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+$dark-font: rgb(103, 67, 187);
+$light-font: rgba(255, 255, 255, 0.877);
+$normal-priority: #003f63;
+$shadow: -2px 2px rgba(255, 255, 255, 0.466);
+
+
 $primary-color: #f2f2f2;
 $secondary-color: #1b1b1b;
 $third-color: #404040;
-$shadow-color: #0d0d0d;
 $primary-font-color: #353d40;
 $secondary-font-color: #f2f2f2;
 $normal-priority-color: #003f63;
@@ -16,99 +25,95 @@ $high-priority-color: #f2b138;
 
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
+  color: $dark-font;
 }
 
 .inactive {
   display: none !important;
 }
 
-body {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: clamp(10rem, 30%, 20rem) 1fr;
-  grid-template-rows: 5rem 1fr;
-  grid-template-areas:
-    "HEADER HEADER"
-    "NAV MAIN";
-  margin: 0;
-  color: $primary-font-color;
-  width: 100%;
-  height: 100vh;
+.high-priority{
+  background-color: $input-background !important;
+  background-image: $hp-background !important;
 }
 
-button {
-  font-weight: bold;
-  border: none;
+option {
   cursor: pointer;
 }
 
+body {
+  @include display-flex();
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background-image: $background-gradient;
+}
+
+button {
+  background: $glass-gradient;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+input,
+select,
+option {
+  background-color: $input-background;
+}
+
 header {
-  grid-area: HEADER;
-  background-color: $secondary-color;
-  color: $secondary-font-color;
-  padding-left: 3rem;
+  width: 100%;
 }
 
 nav {
-  grid-area: NAV;
   @include display-flex();
-  flex-direction: column;
   align-items: center;
-  height: 100%;
-  background-color: $third-color;
-  color: $secondary-font-color;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1rem 0 1rem;
 }
 
-nav h2 {
-  margin-top: 2rem;
-  margin-bottom: 0;
-  text-align: center;
-  width: 80%;
-  border-bottom: 1px solid $primary-color;
-  padding-bottom: 1rem;
+nav h1 {
+  color: $light-font;
+  margin: 0;
+}
+
+.nav-buttons{
+  @include display-flex();
+  align-items: center;
+  justify-content: space-around;
+  width: clamp(18rem, 40%, 25rem);
 }
 
 nav button {
-  background-color: $third-color;
-  color: $secondary-font-color;
-  border-radius: 5px;
-  width: clamp(6rem, 80%, 20rem);
-  margin-top: 1rem;
+  background-image: $glass-gradient;
+  width: 5rem;
   padding: 0.3rem;
-  font-size: clamp(0.8rem, 3vw, 1rem);
-}
-
-.projects {
-  width: 100%;
-  @include display-flex();
-  flex-direction: column;
-  align-items: center;
-}
-
-nav button:hover,
-nav button:focus {
-  background-color: $secondary-color;
+  font-size: 0.8rem;
 }
 
 main {
-  grid-area: MAIN;
   @include display-flex();
   flex-direction: column;
   align-items: center;
+  width: 100%;
   height: 100%;
-  background-color: $primary-color;
+  padding-top: 5rem;
 }
 
 .add-task__btn {
   width: 5rem;
-  background-color: $third-color;
-  color: $secondary-font-color;
+  background-image: $glass-gradient;
   padding: 0.5rem 0;
-  border-radius: 15px;
 }
 
-.add-task__form  {
+.add-task__form {
   display: grid;
   align-items: center;
   justify-content: start;
@@ -117,8 +122,8 @@ main {
   row-gap: 0.8rem;
   column-gap: 0.5rem;
   width: clamp(10rem, 90%, 50rem);
-  box-shadow: 0px 2px 6px $shadow-color;
-  background-color: $third-color;
+  box-shadow: $shadow;
+  background-image: $glass-gradient;
   padding: 1rem;
   border-radius: 15px;
 }
@@ -131,9 +136,7 @@ main form div {
 }
 
 main form button {
-  background-color: $primary-color;
-  color: $primary-font-color;
-  border-radius: 15px;
+  background-color: transparent;
   width: 5rem;
   margin-top: 1rem;
 }
@@ -147,17 +150,8 @@ main select {
 }
 
 label {
-  color: $secondary-font-color;
   text-align: center;
-}
-
-main input {
-  background-color: $primary-color;
-}
-
-#form-priority {
-  color: $secondary-font-color;
-  background-color: $normal-priority-color;
+  font-size: 0.9rem;
 }
 
 input:hover,
@@ -172,21 +166,7 @@ button:focus {
   outline: none;
 }
 
-option {
-  cursor: pointer;
-}
-
-option[value="normal"] {
-  color: $secondary-font-color;
-  background-color: $normal-priority-color;
-}
-
-option[value="high"] {
-  color: $primary-font-color;
-  background-color: $high-priority-color;
-}
-
-.list-container{
+.list-container {
   width: 100%;
 }
 
@@ -215,7 +195,7 @@ li {
   margin: 0;
   margin-bottom: 2rem;
   padding: 0.5rem 1rem;
-  box-shadow: 0px 2px 6px $shadow-color;
+  background-image: $glass-gradient;
   border-radius: 20px;
 }
 

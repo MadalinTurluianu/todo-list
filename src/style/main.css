@@ -1,102 +1,103 @@
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
+  color: #6743bb;
 }
 
 .inactive {
   display: none !important;
 }
 
-body {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  grid-template-columns: clamp(10rem, 30%, 20rem) 1fr;
-  grid-template-rows: 5rem 1fr;
-  grid-template-areas: "HEADER HEADER" "NAV MAIN";
-  margin: 0;
-  color: #353d40;
-  width: 100%;
-  height: 100vh;
+.high-priority {
+  background-color: rgba(255, 255, 255, 0.603) !important;
+  background-image: linear-gradient(-45deg, rgba(248, 54, 0, 0.267), rgba(249, 213, 35, 0.514)) !important;
 }
 
-button {
-  font-weight: bold;
-  border: none;
+option {
   cursor: pointer;
 }
 
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background-image: linear-gradient(45deg, #B993D6, #8CA6DB);
+}
+
+button {
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+input,
+select,
+option {
+  background-color: rgba(255, 255, 255, 0.603);
+}
+
 header {
-  grid-area: HEADER;
-  background-color: #1b1b1b;
-  color: #f2f2f2;
-  padding-left: 3rem;
+  width: 100%;
 }
 
 nav {
-  grid-area: NAV;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 100%;
-  background-color: #404040;
-  color: #f2f2f2;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1rem 0 1rem;
 }
 
-nav h2 {
-  margin-top: 2rem;
-  margin-bottom: 0;
-  text-align: center;
-  width: 80%;
-  border-bottom: 1px solid #f2f2f2;
-  padding-bottom: 1rem;
+nav h1 {
+  color: rgba(255, 255, 255, 0.877);
+  margin: 0;
+}
+
+.nav-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: clamp(18rem, 40%, 25rem);
 }
 
 nav button {
-  background-color: #404040;
-  color: #f2f2f2;
-  border-radius: 5px;
-  width: clamp(6rem, 80%, 20rem);
-  margin-top: 1rem;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  width: 5rem;
   padding: 0.3rem;
-  font-size: clamp(0.8rem, 3vw, 1rem);
-}
-
-.projects {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-nav button:hover,
-nav button:focus {
-  background-color: #1b1b1b;
+  font-size: 0.8rem;
 }
 
 main {
-  grid-area: MAIN;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   height: 100%;
-  background-color: #f2f2f2;
+  padding-top: 5rem;
 }
 
 .add-task__btn {
   width: 5rem;
-  background-color: #404040;
-  color: #f2f2f2;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
   padding: 0.5rem 0;
-  border-radius: 15px;
 }
 
 .add-task__form {
@@ -108,8 +109,8 @@ main {
   row-gap: 0.8rem;
   column-gap: 0.5rem;
   width: clamp(10rem, 90%, 50rem);
-  box-shadow: 0px 2px 6px #0d0d0d;
-  background-color: #404040;
+  box-shadow: -2px 2px rgba(255, 255, 255, 0.466);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
   padding: 1rem;
   border-radius: 15px;
 }
@@ -125,9 +126,7 @@ main form div {
 }
 
 main form button {
-  background-color: #f2f2f2;
-  color: #353d40;
-  border-radius: 15px;
+  background-color: transparent;
   width: 5rem;
   margin-top: 1rem;
 }
@@ -141,17 +140,8 @@ main select {
 }
 
 label {
-  color: #f2f2f2;
   text-align: center;
-}
-
-main input {
-  background-color: #f2f2f2;
-}
-
-#form-priority {
-  color: #f2f2f2;
-  background-color: #003f63;
+  font-size: 0.9rem;
 }
 
 input:hover,
@@ -164,20 +154,6 @@ button:hover,
 button:active,
 button:focus {
   outline: none;
-}
-
-option {
-  cursor: pointer;
-}
-
-option[value=normal] {
-  color: #f2f2f2;
-  background-color: #003f63;
-}
-
-option[value=high] {
-  color: #353d40;
-  background-color: #f2b138;
 }
 
 .list-container {
@@ -210,7 +186,7 @@ li {
   margin: 0;
   margin-bottom: 2rem;
   padding: 0.5rem 1rem;
-  box-shadow: 0px 2px 6px #0d0d0d;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
   border-radius: 20px;
 }
 

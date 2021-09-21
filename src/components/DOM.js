@@ -1,20 +1,7 @@
-import {
-  normalPriorityColor,
-  highPriorityColor,
-  primaryFontColor,
-  secondaryFontColor,
-  primaryColor,
-  secondaryColor,
-  thirdColor,
-  shadowColor,
-} from "./colors.js";
-
 // ---------------------------------------------NAV
 
 const nav = document.querySelector("nav");
-const addRmProjBtnContainer = document.querySelector(
-  ".add-rm-project__container"
-);
+
 const addProjectBtn = document.querySelector(".add-project_btn");
 const rmProjectBtn = document.querySelector(".rm-project_btn");
 const projectsContainer = document.querySelector(".projects-container");
@@ -22,11 +9,20 @@ const projectsContainer = document.querySelector(".projects-container");
 // --FILTERS
 
 const inboxBtn = document.querySelector(".inbox");
-const dailyFilterBtn = document.querySelector(".today");
-const weeklyFilterBtn = document.querySelector(".this-week");
-const highPriorityFilterBtn = document.querySelector(".high-priority");
+const filtersBtn = document.querySelector(".filters");
+const projectsBtn = document.querySelector(".projects");
+const filtersContainerBtn = document.querySelector(".filters-container");
+const dailyFilterBtn = document.querySelector(".daily-filter");
+const weeklyFilterBtn = document.querySelector(".weekly-filter");
+const highPriorityFilterBtn = document.querySelector(".hp-filter");
 
 // ---PROJECT FORM CONTENT
+const addRmProjectContainer = document.querySelector(
+  ".add-rm-project__container"
+);
+const addRmProjBtnContainer = document.querySelector(
+  ".add-rm-project__container .buttons-container"
+);
 
 const projectForm = document.querySelector(".add-project__form");
 const projectFormInput = projectForm.querySelector("input");
@@ -57,20 +53,25 @@ const taskFormCancelBtn = document.querySelector(
 // ---------------------------------------------LOGIC
 
 priorityInput.addEventListener("change", function () {
-  if (priorityInput.value === "normal") {
-    priorityInput.style.backgroundColor = normalPriorityColor;
-    priorityInput.style.color = secondaryFontColor;
-  } else if (priorityInput.value === "high") {
-    priorityInput.style.backgroundColor = highPriorityColor;
-    priorityInput.style.color = primaryFontColor;
+  if (priorityInput.value === "high") {
+    priorityInput.classList.add("high-priority");
   }
 });
 
 addTaskBtn.addEventListener("click", function () {
   taskForm.classList.remove("inactive");
   addTaskBtn.classList.add("inactive");
-  priorityInput.style.backgroundColor = normalPriorityColor;
-  priorityInput.style.color = secondaryFontColor;
+  priorityInput.classList.remove("high-priority");
+});
+
+filtersBtn.addEventListener("click", function () {
+  filtersContainerBtn.classList.remove("inactive");
+  addRmProjectContainer.classList.add("inactive");
+});
+
+projectsBtn.addEventListener("click", function () {
+  filtersContainerBtn.classList.add("inactive");
+  addRmProjectContainer.classList.remove("inactive");
 });
 
 export {

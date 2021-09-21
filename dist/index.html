@@ -8,31 +8,48 @@
     <script src="bundle.js" defer></script>
   </head>
   <body>
-    <header><h1>To-Do List</h1></header>
-    <nav>
-      <button class="inbox">Inbox</button>
-      <button class="high-priority">High priority</button>
-      <button class="today">Today</button>
-      <button class="this-week">This week</button>
-      <h2>Projects</h2>
-      <div class="add-rm-project__container">
-        <button class="add-project_btn">Add</button>
-        <button class="rm-project_btn">Remove</button>
+    <header>
+      <nav>
+        <h1>ToDo List</h1>
+
+        <div class="nav-buttons">
+          <button class="inbox">Inbox</button>
+          <button class="filters">Filters</button>
+          <button class="projects">Projects</button>
+        </div>
+      </nav>
+      <div class="filters-container inactive">
+        <button class="hp-filter">High priority</button>
+        <button class="daily-filter">Today</button>
+        <button class="weekly-filter">This week</button>
       </div>
-      <form class="add-project__form inactive">
-        <input type="text" maxlength="14" placeholder="Project name" required>
-        <button type="button">Cancel</button>
-        <button type="submit">Add</button>
-      </form>
-      <form class="remove-project__form inactive">
-        <select>
-          <option value="">None</option>
-        </select>
-        <button type="button">Cancel</button>
-        <button type="submit">Remove</button>
-      </form>
-      <div class="projects-container"></div>
-    </nav>
+
+      <div class="add-rm-project__container inactive">
+        <div class="buttons-container">
+          <button class="add-project_btn">Add</button>
+          <button class="rm-project_btn">Remove</button>
+        </div>
+        <form class="add-project__form inactive">
+          <input
+            type="text"
+            maxlength="14"
+            placeholder="Project name"
+            required
+          />
+          <button type="button">Cancel</button>
+          <button type="submit">Add</button>
+        </form>
+        <form class="remove-project__form inactive">
+          <select>
+            <option value="">None</option>
+          </select>
+          <button type="button">Cancel</button>
+          <button type="submit">Remove</button>
+        </form>
+        <div class="projects-container"></div>
+      </div>
+    </header>
+
     <main>
       <button class="add-task__btn">Add task</button>
       <form class="add-task__form inactive">
@@ -60,7 +77,6 @@
       <div class="list-container">
         <ul></ul>
       </div>
-
     </main>
   </body>
 </html>
