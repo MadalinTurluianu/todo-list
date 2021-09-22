@@ -8,38 +8,61 @@
     <script src="bundle.js" defer></script>
   </head>
   <body>
-    <header><h1>To-Do List</h1></header>
+
+    <div class="backdrop inactive"></div>
+
     <nav>
-      <button class="inbox">Inbox</button>
-      <button class="high-priority">High priority</button>
-      <button class="today">Today</button>
-      <button class="this-week">This week</button>
-      <h2>Projects</h2>
-      <div class="add-rm-project__container">
-        <button class="add-project_btn">Add</button>
-        <button class="rm-project_btn">Remove</button>
+      <h1>ToDo List</h1>
+
+      <div class="nav-buttons">
+        <button class="inbox">Inbox</button>
+
+        <div class="filters-wrapper wrapper">
+          <button class="filters">Filters</button>
+          <div class="filters-container inactive">
+            <button class="hp-filter">Priority</button>
+            <button class="daily-filter">Daily</button>
+            <button class="weekly-filter">Weekly</button>
+          </div>
+        </div>
+
+        <div class="projects-wrapper wrapper">
+          <button class="projects">Projects</button>
+          <div class="add-rm-project__container inactive">
+            <div class="buttons-container">
+              <button class="add-project_btn">Add</button>
+              <button class="rm-project_btn">Remove</button>
+            </div>
+            <form class="add-project__form inactive">
+              <input
+                type="text"
+                maxlength="14"
+                placeholder="Project name"
+                required
+              />
+              <button type="button">Cancel</button>
+              <button type="submit">Add</button>
+            </form>
+            <form class="remove-project__form inactive">
+              <select>
+                <option value="">None</option>
+              </select>
+              <button type="button">Cancel</button>
+              <button type="submit">Remove</button>
+            </form>
+            <div class="projects-container"></div>
+          </div>
+        </div>
       </div>
-      <form class="add-project__form inactive">
-        <input type="text" maxlength="14" placeholder="Project name" required>
-        <button type="button">Cancel</button>
-        <button type="submit">Add</button>
-      </form>
-      <form class="remove-project__form inactive">
-        <select>
-          <option value="">None</option>
-        </select>
-        <button type="button">Cancel</button>
-        <button type="submit">Remove</button>
-      </form>
-      <div class="projects-container"></div>
     </nav>
+
     <main>
       <button class="add-task__btn">Add task</button>
       <form class="add-task__form inactive">
         <label for="form-title">Title</label>
-        <input type="text" id="form-title" maxlength="18" required />
+        <input type="text" id="form-title" maxlength="10" required />
         <label for="form-description">Description</label>
-        <input type="text" id="form-description" maxlength="30" required />
+        <input type="text" id="form-description" maxlength="26" required />
         <label for="form-due-date">Due date</label>
         <input type="date" id="form-due-date" />
         <label for="form-priority">Priority</label>
@@ -60,7 +83,6 @@
       <div class="list-container">
         <ul></ul>
       </div>
-
     </main>
   </body>
 </html>
