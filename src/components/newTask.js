@@ -24,7 +24,8 @@ function createTask(title, description, dueDate, priority, project) {
   taskDescription.className = "task-description";
 
   let taskDueDate = document.createElement("p");
-  taskDueDate.textContent = taskObj.dueDate;
+  let date = new Date(taskObj.dueDate);
+  taskDueDate.textContent = taskObj.dueDate === "" ? "" :`${date.getDate() >= 10 ? date.getDate(): `0${date.getDate()}`}-${date.getMonth() + 1 >= 10 ? date.getMonth() + 1: `0${date.getMonth() + 1}`}-${date.getFullYear()}`;
   taskDueDate.className = "task-date";
 
   if (taskObj.priority === "high") {
@@ -33,7 +34,6 @@ function createTask(title, description, dueDate, priority, project) {
 
   let deleteTaskBtn = document.createElement("button");
   deleteTaskBtn.className = "delete-task__btn";
-  deleteTaskBtn.textContent = "X";
 
   taskEl.appendChild(deleteTaskBtn);
   taskEl.appendChild(taskTitle);

@@ -1,3 +1,5 @@
+const backdrop = document.querySelector(".backdrop");
+
 // ---------------------------------------------NAV
 
 const nav = document.querySelector("nav");
@@ -60,8 +62,9 @@ priorityInput.addEventListener("change", function () {
 
 addTaskBtn.addEventListener("click", function () {
   taskForm.classList.remove("inactive");
-  addTaskBtn.classList.add("inactive");
   priorityInput.classList.remove("high-priority");
+  backdrop.classList.remove("inactive");
+  document.querySelector("ul").classList.add("inactive");
 });
 
 inboxBtn.addEventListener("click", function () {
@@ -70,16 +73,17 @@ inboxBtn.addEventListener("click", function () {
 });
 
 filtersBtn.addEventListener("click", function () {
-  filtersContainerBtn.classList.remove("inactive");
+  filtersContainerBtn.classList.toggle("inactive");
   addRmProjectContainer.classList.add("inactive");
 });
 
 projectsBtn.addEventListener("click", function () {
   filtersContainerBtn.classList.add("inactive");
-  addRmProjectContainer.classList.remove("inactive");
+  addRmProjectContainer.classList.toggle("inactive");
 });
 
 export {
+  backdrop,
   nav,
   addRmProjBtnContainer,
   addProjectBtn,

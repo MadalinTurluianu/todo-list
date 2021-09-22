@@ -1,3 +1,39 @@
+@keyframes grow {
+  0% {
+    max-height: 0px;
+  }
+  100% {
+    max-height: 6rem;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes fade-in-down {
+  0% {
+    opacity: 0%;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0rem);
+  }
+}
+@keyframes fade-in-right {
+  0% {
+    opacity: 0%;
+    transform: translateX(-3rem);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0rem);
+  }
+}
 * {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -31,8 +67,17 @@ body {
   background-image: linear-gradient(45deg, #B993D6, #8CA6DB);
 }
 
+.backdrop {
+  background-image: linear-gradient(45deg, #ffffff8e, #ffffff52 30%, #ffffffa8 30%, #ffffff3b 32%, #ffffff3b 32%, #ffffff0a 90%, #ffffffa8 90%, #ffffff09 92%, #ffffff00);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  animation: fade-in 1s;
+}
+
 button {
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -51,7 +96,7 @@ option {
 nav {
   position: absolute;
   top: 0;
-  z-index: 10;
+  z-index: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -79,13 +124,49 @@ nav h1 {
 }
 
 .wrapper {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
   border-radius: 14px;
   width: 5rem;
+  transition: height;
 }
 
 .wrapper button {
   background: transparent;
+}
+
+.filters-container,
+.add-rm-project__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.603);
+  animation: grow 0.3s;
+  overflow: hidden;
+  width: 90%;
+}
+.filters-container button,
+.add-rm-project__container button {
+  color: rgba(255, 255, 255, 0.877);
+}
+
+.buttons-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+.buttons-container button {
+  font-size: 0.6rem;
 }
 
 main {
@@ -102,11 +183,15 @@ main {
 
 .add-task__btn {
   width: 5rem;
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
   padding: 0.5rem 0;
 }
 
 .add-task__form {
+  position: absolute;
+  z-index: 3;
+  top: 30vh;
+  animation: fade-in-down 0.8s;
   display: grid;
   align-items: center;
   justify-content: start;
@@ -116,7 +201,7 @@ main {
   column-gap: 0.5rem;
   width: clamp(10rem, 90%, 50rem);
   box-shadow: -2px 2px rgba(255, 255, 255, 0.466);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
   padding: 1rem;
   border-radius: 15px;
 }
@@ -185,14 +270,14 @@ li {
   display: grid;
   align-items: center;
   justify-content: start;
-  grid-template-columns: 1fr 5rem;
+  grid-template-columns: auto auto;
   grid-template-rows: 2rem 1.5rem;
   grid-template-areas: "TITLE DATE" "DESCRIPTION DESCRIPTION";
   width: clamp(10rem, 90%, 50rem);
   margin: 0;
   margin-bottom: 2rem;
   padding: 0.5rem 1rem;
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.514), rgba(255, 255, 255, 0.267));
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
   border-radius: 20px;
 }
 
@@ -206,18 +291,20 @@ li {
 
 .task-date {
   grid-area: DATE;
-  justify-self: end;
+  font-size: 0.8rem;
+  margin-left: 0.8rem;
 }
 
 .delete-task__btn {
   position: absolute;
-  right: 0;
-  top: 0;
-  border-radius: 50%;
-  width: 1.7rem;
-  height: 1.7rem;
+  right: 1.2rem;
+  top: center;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.603);
+  width: 1.3rem;
+  height: 1.3rem;
+  background-image: none;
   background-color: transparent;
-  transform: translate(0.6rem, -0.6rem);
 }
 
 li h2,

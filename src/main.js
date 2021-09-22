@@ -4,7 +4,7 @@ import { addTask, removeTask } from "./components/tasks";
 import { createFilteredList } from "./components/filteredLists";
 import { createProject, removeProject } from "./components/project";
 import {
-  nav,
+  backdrop,
   addRmProjBtnContainer,
   addProjectBtn,
   rmProjectBtn,
@@ -35,13 +35,14 @@ import {
 const taskList = [];
 
 function closeTaskForm() {
-  addTaskBtn.classList.remove("inactive");
   taskForm.classList.add("inactive");
   titleInput.value = "";
   descriptionInput.value = "";
   dueDateInput.value = "";
   priorityInput.value = "normal";
   projectInput.value = "";
+  backdrop.classList.add("inactive");
+  document.querySelector("ul").classList.remove("inactive");
 }
 
 taskForm.addEventListener("submit", function (event) {
@@ -55,9 +56,13 @@ taskForm.addEventListener("submit", function (event) {
     projectInput
   );
 
+  task.taskEl.style.animation = "fade-in-right 1s";
   addTask(listContainer, task, taskList);
   closeTaskForm();
   rerenderUl("inbox");
+  setTimeout(() => {
+    task.taskEl.style.animation = ""
+  }, 1000);;
 
   // ------------------------------------------- Delete task functionality
 
