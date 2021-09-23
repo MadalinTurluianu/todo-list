@@ -110,6 +110,7 @@ nav {
 
 nav h1 {
   color: rgba(255, 255, 255, 0.877);
+  min-width: 7rem;
   margin: 0;
 }
 
@@ -120,7 +121,7 @@ nav h1 {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
-  width: clamp(18rem, 40%, 25rem);
+  width: clamp(8rem, 80%, 25rem);
 }
 
 .wrapper {
@@ -132,16 +133,17 @@ nav h1 {
   align-items: center;
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
   border-radius: 14px;
-  width: 5rem;
   transition: height;
+  width: 8rem;
 }
 
 .wrapper button {
   background: transparent;
+  width: 8rem;
 }
 
 .filters-container,
-.add-rm-project__container {
+.add-project__container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -154,8 +156,31 @@ nav h1 {
   width: 90%;
 }
 .filters-container button,
-.add-rm-project__container button {
+.add-project__container button {
   color: rgba(255, 255, 255, 0.877);
+}
+.filters-container .add-project_btn,
+.add-project__container .add-project_btn {
+  color: #6743bb;
+}
+
+.add-project__form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.add-project__form input {
+  width: 90%;
+  margin: auto;
+}
+.add-project__form button {
+  color: #6743bb;
 }
 
 .buttons-container {
@@ -163,10 +188,13 @@ nav h1 {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 0;
 }
 .buttons-container button {
-  font-size: 0.6rem;
+  width: 3rem;
+  padding: 0;
 }
 
 main {
@@ -179,6 +207,26 @@ main {
   width: 100%;
   height: 100%;
   margin-top: 10rem;
+}
+
+.page-title__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.603);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.3rem;
+}
+.page-title__container h2 {
+  color: rgba(255, 255, 255, 0.877);
+  margin: 0;
+}
+.page-title__container .delete-project__btn {
+  position: absolute;
+  right: -6rem;
+  top: center;
 }
 
 .add-task__btn {
@@ -222,7 +270,7 @@ main form button {
   margin-top: 1rem;
 }
 
-main input,
+input,
 main select {
   height: 1.2rem;
   border: none;

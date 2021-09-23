@@ -5,7 +5,6 @@ const backdrop = document.querySelector(".backdrop");
 const nav = document.querySelector("nav");
 
 const addProjectBtn = document.querySelector(".add-project_btn");
-const rmProjectBtn = document.querySelector(".rm-project_btn");
 const projectsContainer = document.querySelector(".projects-container");
 
 // --FILTERS
@@ -19,26 +18,27 @@ const weeklyFilterBtn = document.querySelector(".weekly-filter");
 const highPriorityFilterBtn = document.querySelector(".hp-filter");
 
 // ---PROJECT FORM CONTENT
-const addRmProjectContainer = document.querySelector(
-  ".add-rm-project__container"
-);
-const addRmProjBtnContainer = document.querySelector(
-  ".add-rm-project__container .buttons-container"
+const addProjectContainer = document.querySelector(
+  ".add-project__container"
 );
 
 const projectForm = document.querySelector(".add-project__form");
 const projectFormInput = projectForm.querySelector("input");
 const projectFormCancelBtn = projectForm.querySelector("button[type='button']");
 
-const rmProjectForm = document.querySelector(".remove-project__form");
-const selectRmProject = rmProjectForm.querySelector("select");
-const cancelRmProject = rmProjectForm.querySelector("button[type='button']");
 // ---------------------------------------------MAIN
 
 const main = document.querySelector("main");
 const addTaskBtn = document.querySelector(".add-task__btn");
 const ul = document.querySelector("ul");
 const listContainer = document.querySelector(".list-container");
+
+// ---PAGE TITLE + CANCEL PROJECT
+
+const pageTitleContainer = document.querySelector(".page-title__container");
+const pageTitle = document.createElement("h2");
+pageTitle.textContent = "Inbox";
+pageTitleContainer.appendChild(pageTitle);
 
 // ---TASK FORM CONTENT
 
@@ -53,6 +53,11 @@ const taskFormCancelBtn = document.querySelector(
 );
 
 // ---------------------------------------------LOGIC
+
+backdrop.addEventListener("click", function() {
+  taskForm.classList.add("inactive");
+  backdrop.classList.add("inactive");
+})
 
 priorityInput.addEventListener("change", function () {
   if (priorityInput.value === "high") {
@@ -69,25 +74,24 @@ addTaskBtn.addEventListener("click", function () {
 
 inboxBtn.addEventListener("click", function () {
   filtersContainerBtn.classList.add("inactive");
-  addRmProjectContainer.classList.add("inactive");
+  addProjectContainer.classList.add("inactive");
+  pageTitle.textContent = "Index";
 });
 
 filtersBtn.addEventListener("click", function () {
   filtersContainerBtn.classList.toggle("inactive");
-  addRmProjectContainer.classList.add("inactive");
+  addProjectContainer.classList.add("inactive");
 });
 
 projectsBtn.addEventListener("click", function () {
   filtersContainerBtn.classList.add("inactive");
-  addRmProjectContainer.classList.toggle("inactive");
+  addProjectContainer.classList.toggle("inactive");
 });
 
 export {
   backdrop,
   nav,
-  addRmProjBtnContainer,
   addProjectBtn,
-  rmProjectBtn,
   projectsContainer,
   inboxBtn,
   dailyFilterBtn,
@@ -96,9 +100,8 @@ export {
   projectForm,
   projectFormInput,
   projectFormCancelBtn,
-  rmProjectForm,
-  selectRmProject,
-  cancelRmProject,
+  pageTitleContainer,
+  pageTitle,
   main,
   addTaskBtn,
   ul,

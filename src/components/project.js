@@ -13,26 +13,23 @@ function createProject(projectName, optionParent, btnParent) {
   return { option, button, name };
 }
 
-function removeProject(projectName, originalArray, selects = [], projContainer) {
+function removeProject(projectName, originalArray, select, projContainer) {
   for (let task of originalArray) {
     if (task.taskObj.project === projectName) {
       originalArray.splice(originalArray.indexOf(task), 1);
     }
   }
 
-  for (let select of selects) {
-    let options = [...select.children];
-    let index = options.findIndex(
-      (option) => option.textContent === projectName
-    );
-    select.removeChild(select.children[index]);
-  }
+  let options = [...select.children];
+  let index = options.findIndex((option) => option.textContent === projectName);
+
+  select.removeChild(select.children[index]);
 
   let projects = [...projContainer.children];
-  let index = projects.findIndex(
+  let index2 = projects.findIndex(
     (project) => project.textContent === projectName
   );
-  projContainer.removeChild(projContainer.children[index]);
+  projContainer.removeChild(projContainer.children[index2]);
 }
 
 export { createProject, removeProject };

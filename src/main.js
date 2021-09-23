@@ -5,9 +5,7 @@ import { createFilteredList } from "./components/filteredLists";
 import { createProject, removeProject } from "./components/project";
 import {
   backdrop,
-  addRmProjBtnContainer,
   addProjectBtn,
-  rmProjectBtn,
   projectsContainer,
   inboxBtn,
   dailyFilterBtn,
@@ -16,10 +14,8 @@ import {
   projectForm,
   projectFormInput,
   projectFormCancelBtn,
-  rmProjectForm,
-  selectRmProject,
-  cancelRmProject,
-  addTaskBtn,
+  pageTitleContainer,
+  pageTitle,
   listContainer,
   taskForm,
   titleInput,
@@ -83,13 +79,13 @@ taskFormCancelBtn.addEventListener("click", closeTaskForm);
 // ---ADD PROJECT
 
 function closeAddProjectForm() {
-  addRmProjBtnContainer.classList.remove("inactive");
+  addProjectBtn.classList.remove("inactive");
   projectForm.classList.add("inactive");
   projectFormInput.value = "";
 }
 
 addProjectBtn.addEventListener("click", function () {
-  addRmProjBtnContainer.classList.add("inactive");
+  addProjectBtn.classList.add("inactive");
   projectForm.classList.remove("inactive");
 });
 
@@ -106,36 +102,32 @@ projectForm.addEventListener("submit", function (event) {
     );
     project.button.addEventListener("click", function () {
       rerenderUl("project", project.name);
+
+      // ---REMOVE PROJECT
+
+      pageTitleContainer.innerHTML = "";
+      pageTitleContainer.appendChild(pageTitle);
+      pageTitle.textContent = project.name;
+
+      let deleteProjectBtn = document.createElement("button");
+      deleteProjectBtn.className = "delete-project__btn";
+      deleteProjectBtn.textContent = "Delete"
+
+      deleteProjectBtn.addEventListener("click", function() {
+        removeProject(project.name, taskList, projectInput, projectsContainer);
+        rerenderUl("inbox");
+        pageTitle.textContent = "Inbox";
+        pageTitleContainer.removeChild(deleteProjectBtn);
+      })
+
+      pageTitleContainer.appendChild(deleteProjectBtn);
     });
-    selectRmProject.appendChild(project.option.cloneNode(true));
   }
   closeAddProjectForm();
+  pageTitle.textContent = "Inbox";
 });
 
 
-// ---REMOVE PROJECT
-
-function closeRmProjectForm() {
-  addRmProjBtnContainer.classList.remove("inactive");
-  rmProjectForm.classList.add("inactive");
-  selectRmProject.value = "";
-}
-
-rmProjectBtn.addEventListener("click", function () {
-  addRmProjBtnContainer.classList.add("inactive");
-  rmProjectForm.classList.remove("inactive");
-});
-
-cancelRmProject.addEventListener("click", closeRmProjectForm);
-
-rmProjectForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  removeProject(selectRmProject.value, taskList, [selectRmProject, projectInput], projectsContainer);
-
-  rerenderUl("inbox");
-  closeRmProjectForm();
-});
 // ------------------------------------------- Filter handling
 
 function rerenderUl(filterType, projectName = "") {
@@ -150,12 +142,15 @@ inboxBtn.addEventListener("click", function () {
 
 highPriorityFilterBtn.addEventListener("click", function () {
   rerenderUl("high priority");
+  pageTitle.textContent = "High priority";
 });
 
 dailyFilterBtn.addEventListener("click", function () {
   rerenderUl("today");
+  pageTitle.textContent = "Today";
 });
 
 weeklyFilterBtn.addEventListener("click", function () {
   rerenderUl("week");
+  pageTitle.textContent = "This week";
 });

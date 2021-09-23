@@ -8,10 +8,10 @@
     <script src="bundle.js" defer></script>
   </head>
   <body>
-
     <div class="backdrop inactive"></div>
 
     <nav>
+      
       <h1>ToDo List</h1>
 
       <div class="nav-buttons">
@@ -28,20 +28,20 @@
 
         <div class="projects-wrapper wrapper">
           <button class="projects">Projects</button>
-          <div class="add-rm-project__container inactive">
-            <div class="buttons-container">
-              <button class="add-project_btn">Add</button>
-              <button class="rm-project_btn">Remove</button>
-            </div>
+          <div class="add-project__container inactive">
+            <button class="add-project_btn">Add +</button>
+
             <form class="add-project__form inactive">
               <input
                 type="text"
-                maxlength="14"
+                maxlength="10"
                 placeholder="Project name"
                 required
               />
-              <button type="button">Cancel</button>
-              <button type="submit">Add</button>
+              <div class="buttons-container">
+                <button type="submit">Add</button>
+                <button type="button">Cancel</button>
+              </div>
             </form>
             <form class="remove-project__form inactive">
               <select>
@@ -57,6 +57,8 @@
     </nav>
 
     <main>
+      <div class="page-title__container"></div>
+
       <button class="add-task__btn">Add task</button>
       <form class="add-task__form inactive">
         <label for="form-title">Title</label>
