@@ -8,14 +8,8 @@ $light-font: rgba(255, 255, 255, 0.877);
 $normal-priority: #003f63;
 $shadow: -2px 2px rgba(255, 255, 255, 0.466);
 $border: 1px solid rgba(255, 255, 255, 0.603);
-
-$primary-color: #f2f2f2;
-$secondary-color: #1b1b1b;
-$third-color: #404040;
-$primary-font-color: #353d40;
-$secondary-font-color: #f2f2f2;
-$normal-priority-color: #003f63;
-$high-priority-color: #f2b138;
+$special-font: "Pacifico";
+$normal-font: "Rubik";
 
 @mixin display-flex() {
   display: -webkit-box;
@@ -66,7 +60,7 @@ $high-priority-color: #f2b138;
 
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: $normal-font;
   color: $dark-font;
 }
 
@@ -88,7 +82,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
   background-image: $background-gradient;
@@ -132,10 +126,10 @@ nav {
   height: 8rem;
 }
 
-nav h1 {
-  color: $light-font;
-  min-width: 7rem;
-  margin: 0;
+nav img {
+  min-width: 6rem;
+  width: 6rem;
+  margin-left: 1rem;
 }
 
 .nav-buttons{
@@ -143,6 +137,7 @@ nav h1 {
   align-items: flex-start;
   justify-content: space-around;
   width: clamp(8rem, 80%, 25rem);
+  margin-top: 0.6rem;
 }
 
 .wrapper {
@@ -226,8 +221,10 @@ main {
   padding-bottom: 0.3rem;
 
   h2 {
+    font-family: Pacifico;
     color: $light-font;
     margin: 0;
+    font-size: 1.8rem;
   }
 
   .delete-project__btn {

@@ -11,6 +11,7 @@ import {
   dailyFilterBtn,
   weeklyFilterBtn,
   highPriorityFilterBtn,
+  addProjectContainer,
   projectForm,
   projectFormInput,
   projectFormCancelBtn,
@@ -41,6 +42,8 @@ function closeTaskForm() {
   document.querySelector("ul").classList.remove("inactive");
 }
 
+backdrop.addEventListener("click", closeTaskForm);
+
 taskForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -56,6 +59,7 @@ taskForm.addEventListener("submit", function (event) {
   addTask(listContainer, task, taskList);
   closeTaskForm();
   rerenderUl("inbox");
+  pageTitle.textContent = "Inbox";
   setTimeout(() => {
     task.taskEl.style.animation = ""
   }, 1000);;
@@ -108,6 +112,7 @@ projectForm.addEventListener("submit", function (event) {
       pageTitleContainer.innerHTML = "";
       pageTitleContainer.appendChild(pageTitle);
       pageTitle.textContent = project.name;
+      addProjectContainer.classList.add("inactive");
 
       let deleteProjectBtn = document.createElement("button");
       deleteProjectBtn.className = "delete-project__btn";
@@ -124,7 +129,6 @@ projectForm.addEventListener("submit", function (event) {
     });
   }
   closeAddProjectForm();
-  pageTitle.textContent = "Inbox";
 });
 
 
@@ -134,10 +138,13 @@ function rerenderUl(filterType, projectName = "") {
   let newUlList = createFilteredList(filterType, taskList, projectName);
   listContainer.innerHTML = "";
   listContainer.appendChild(newUlList);
+  pageTitleContainer.innerHTML = "";
+  pageTitleContainer.appendChild(pageTitle);
 }
 
 inboxBtn.addEventListener("click", function () {
   rerenderUl("inbox");
+  pageTitle.textContent = "Inbox";
 });
 
 highPriorityFilterBtn.addEventListener("click", function () {

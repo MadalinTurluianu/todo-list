@@ -12,7 +12,7 @@ const projectsContainer = document.querySelector(".projects-container");
 const inboxBtn = document.querySelector(".inbox");
 const filtersBtn = document.querySelector(".filters");
 const projectsBtn = document.querySelector(".projects");
-const filtersContainerBtn = document.querySelector(".filters-container");
+const filtersContainer = document.querySelector(".filters-container");
 const dailyFilterBtn = document.querySelector(".daily-filter");
 const weeklyFilterBtn = document.querySelector(".weekly-filter");
 const highPriorityFilterBtn = document.querySelector(".hp-filter");
@@ -54,14 +54,11 @@ const taskFormCancelBtn = document.querySelector(
 
 // ---------------------------------------------LOGIC
 
-backdrop.addEventListener("click", function() {
-  taskForm.classList.add("inactive");
-  backdrop.classList.add("inactive");
-})
-
 priorityInput.addEventListener("change", function () {
   if (priorityInput.value === "high") {
     priorityInput.classList.add("high-priority");
+  }else {
+    priorityInput.classList.remove("high-priority");
   }
 });
 
@@ -73,20 +70,25 @@ addTaskBtn.addEventListener("click", function () {
 });
 
 inboxBtn.addEventListener("click", function () {
-  filtersContainerBtn.classList.add("inactive");
+  filtersContainer.classList.add("inactive");
   addProjectContainer.classList.add("inactive");
-  pageTitle.textContent = "Index";
 });
 
 filtersBtn.addEventListener("click", function () {
-  filtersContainerBtn.classList.toggle("inactive");
+  filtersContainer.classList.toggle("inactive");
   addProjectContainer.classList.add("inactive");
 });
 
 projectsBtn.addEventListener("click", function () {
-  filtersContainerBtn.classList.add("inactive");
+  filtersContainer.classList.add("inactive");
   addProjectContainer.classList.toggle("inactive");
 });
+
+for (let filter of [...filtersContainer.children]) {
+  filter.addEventListener("click", function(){
+    filtersContainer.classList.add("inactive");
+  })
+}
 
 export {
   backdrop,
@@ -97,6 +99,7 @@ export {
   dailyFilterBtn,
   weeklyFilterBtn,
   highPriorityFilterBtn,
+  addProjectContainer,
   projectForm,
   projectFormInput,
   projectFormCancelBtn,
