@@ -5,6 +5,7 @@ import { createFilteredList } from "./components/filteredLists";
 import { createProject, removeProject } from "./components/project";
 import {
   backdrop,
+  closeMenu,
   addProjectBtn,
   projectsContainer,
   inboxBtn,
@@ -150,14 +151,17 @@ inboxBtn.addEventListener("click", function () {
 highPriorityFilterBtn.addEventListener("click", function () {
   rerenderUl("high priority");
   pageTitle.textContent = "High priority";
+  closeMenu();
 });
 
 dailyFilterBtn.addEventListener("click", function () {
   rerenderUl("today");
   pageTitle.textContent = "Today";
+  closeMenu();
 });
 
 weeklyFilterBtn.addEventListener("click", function () {
   rerenderUl("week");
   pageTitle.textContent = "This week";
+  closeMenu();
 });

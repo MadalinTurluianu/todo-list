@@ -1,8 +1,12 @@
 const backdrop = document.querySelector(".backdrop");
-
+const mobileBackdrop = document.querySelector(".mobile-backdrop");
 // ---------------------------------------------NAV
 
 const nav = document.querySelector("nav");
+
+const mobileMenu = document.querySelector(".mobile-menu");
+const mobileMenuDiv = document.querySelector(".mobile-menu div");
+const navButtons = document.querySelector(".nav-buttons");
 
 const addProjectBtn = document.querySelector(".add-project_btn");
 const projectsContainer = document.querySelector(".projects-container");
@@ -72,6 +76,7 @@ addTaskBtn.addEventListener("click", function () {
 inboxBtn.addEventListener("click", function () {
   filtersContainer.classList.add("inactive");
   addProjectContainer.classList.add("inactive");
+  closeMenu();
 });
 
 filtersBtn.addEventListener("click", function () {
@@ -90,8 +95,38 @@ for (let filter of [...filtersContainer.children]) {
   })
 }
 
+// -------------------------MOBILE
+
+navButtons.addEventListener("pointer", function(event) {
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+})
+
+function openMenu() {
+  navButtons.classList.add("flex");
+  mobileMenu.classList.add("inactive");
+  mobileMenuDiv.classList.add("inactive");
+  mobileBackdrop.classList.remove("inactive");
+}
+
+function closeMenu() {
+  navButtons.classList.remove("flex");
+  mobileMenu.classList.remove("inactive");
+  mobileMenuDiv.classList.remove("inactive");
+  mobileBackdrop.classList.add("inactive");
+}
+
+mobileMenu.addEventListener("click", openMenu);
+mobileMenuDiv.addEventListener("click", openMenu);
+mobileBackdrop.addEventListener("click", closeMenu);
+dailyFilterBtn.addEventListener("click", closeMenu);
+navButtons.addEventListener("click", function(event) {
+  event.stopPropagation();
+});
+
 export {
   backdrop,
+  closeMenu,
   nav,
   addProjectBtn,
   projectsContainer,

@@ -1,8 +1,33 @@
-$background-gradient: linear-gradient(45deg, #B993D6, #8CA6DB);
-$backdrop-gradient: linear-gradient(45deg, #ffffff8e, #ffffff52 30%, #ffffffa8 30%, #ffffff3b 32%, #ffffff3b 32%, #ffffff0a 90%, #ffffffa8 90%, #ffffff09 92%, #ffffff00);
-$hp-background: linear-gradient(-45deg, rgba(248, 54, 0, 0.267), rgba(249, 213, 35, 0.514));
+$background-gradient: linear-gradient(45deg, #b993d6, #8ca6db);
+$backdrop-gradient: linear-gradient(
+  45deg,
+  #ffffff8e,
+  #ffffff52 30%,
+  #ffffffa8 30%,
+  #ffffff3b 32%,
+  #ffffff3b 32%,
+  #ffffff0a 90%,
+  #ffffffa8 90%,
+  #ffffff09 92%,
+  #ffffff00
+);
+$hp-background: linear-gradient(
+  -45deg,
+  rgba(248, 54, 0, 0.267),
+  rgba(249, 213, 35, 0.514)
+);
 $input-background: rgba(255, 255, 255, 0.603);
-$glass-gradient: linear-gradient(45deg, rgba(255, 255, 255, 0.432), rgba(255, 255, 255, 0.178));
+$glass-gradient: linear-gradient(
+  45deg,
+  rgba(255, 255, 255, 0.432),
+  rgba(255, 255, 255, 0.178)
+);
+$menu-gradient: linear-gradient(
+  45deg,
+  rgba(255, 255, 255, 0.774),
+  rgba(255, 255, 255, 0.349)
+);
+$contrast-color: rgb(240, 29, 93);
 $dark-font: rgb(103, 67, 187);
 $light-font: rgba(255, 255, 255, 0.877);
 $normal-priority: #003f63;
@@ -21,36 +46,40 @@ $normal-font: "Rubik";
 // -----------------------------------EFFECTS
 
 @keyframes grow {
-  0%{
+  0% {
     max-height: 0px;
-  }100%{
+  }
+  100% {
     max-height: 6rem;
   }
 }
 
 @keyframes fade-in {
-  0%{
+  0% {
     opacity: 0%;
-  }100% {
+  }
+  100% {
     opacity: 100%;
   }
 }
 
 @keyframes fade-in-down {
-  0%{
+  0% {
     opacity: 0%;
     transform: translateY(-2rem);
-  }100% {
+  }
+  100% {
     opacity: 100%;
     transform: translateY(0rem);
   }
 }
 
 @keyframes fade-in-right {
-  0%{
+  0% {
     opacity: 0%;
     transform: translateX(-3rem);
-  }100% {
+  }
+  100% {
     opacity: 100%;
     transform: translateX(0rem);
   }
@@ -68,7 +97,14 @@ $normal-font: "Rubik";
   display: none !important;
 }
 
-.high-priority{
+.flex {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.high-priority {
   background-color: $input-background !important;
   background-image: $hp-background !important;
 }
@@ -89,6 +125,15 @@ body {
 }
 
 .backdrop {
+  background-image: $backdrop-gradient;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  animation: fade-in 1s;
+}
+
+.mobile-backdrop {
   background-image: $backdrop-gradient;
   position: absolute;
   width: 100%;
@@ -132,7 +177,11 @@ nav img {
   margin-left: 1rem;
 }
 
-.nav-buttons{
+.mobile-menu {
+  display: none;
+}
+
+.nav-buttons {
   @include display-flex();
   align-items: flex-start;
   justify-content: space-around;
@@ -164,7 +213,7 @@ nav img {
   animation: grow 0.3s;
   overflow: hidden;
   width: 90%;
-  
+
   button {
     color: $light-font;
   }
@@ -188,7 +237,7 @@ nav img {
   }
 
   button {
-      color: $dark-font;
+    color: $dark-font;
   }
 }
 
@@ -225,12 +274,16 @@ main {
     color: $light-font;
     margin: 0;
     font-size: 1.8rem;
+    font-weight: normal;
   }
 
   .delete-project__btn {
+    background-color: $contrast-color;
+    color: $light-font;
     position: absolute;
     right: -6rem;
-    top: center;
+    top: 1rem;
+    width: 4rem;
   }
 }
 
@@ -329,7 +382,7 @@ li {
   background-image: $glass-gradient;
   border-radius: 20px;
 }
- 
+
 .task-title {
   grid-area: TITLE;
 }
@@ -361,3 +414,41 @@ li p {
   margin: 0;
 }
 
+@media (max-width: 600px) {
+  .mobile-menu {
+    @include display-flex();
+    align-items: center;
+    margin-top: 1.4rem;
+
+    div {
+      width: 0.7rem;
+      height: 0.7rem;
+      background-image: $menu-gradient;
+      border-radius: 50%;
+      margin-right: 0.3rem;
+    }
+  }
+
+  .nav-buttons {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: clamp(10rem, 50vw, 40rem);
+    height: 100vh;
+    margin: 0;
+    background-image: $menu-gradient;
+  }
+
+  .nav-buttons>button{
+    margin-top: 5rem;
+  }
+
+  .nav-buttons>div {
+    margin-top: 3rem;
+  }
+}
