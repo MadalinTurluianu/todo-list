@@ -5,10 +5,12 @@ import { createFilteredList } from "./components/filteredLists";
 import { createProject, removeProject } from "./components/project";
 import {
   backdrop,
+  mobileBackdrop,
   closeMenu,
   addProjectBtn,
   projectsContainer,
   inboxBtn,
+  filtersContainer,
   dailyFilterBtn,
   weeklyFilterBtn,
   highPriorityFilterBtn,
@@ -123,7 +125,7 @@ projectForm.addEventListener("submit", function (event) {
         removeProject(project.name, taskList, projectInput, projectsContainer);
         rerenderUl("inbox");
         pageTitle.textContent = "Inbox";
-        pageTitleContainer.removeChild(deleteProjectBtn);
+        pageTitleContainer.remove(deleteProjectBtn);
       })
 
       pageTitleContainer.appendChild(deleteProjectBtn);
@@ -131,6 +133,15 @@ projectForm.addEventListener("submit", function (event) {
   }
   closeAddProjectForm();
 });
+
+// ---MOBILE CLOSE ADD PROJECT FORM
+
+mobileBackdrop.addEventListener("click", function() {
+  closeAddProjectForm();
+  closeMenu();
+  addProjectContainer.classList.add("inactive");
+  filtersContainer.classList.add("inactive");
+})
 
 
 // ------------------------------------------- Filter handling
@@ -146,6 +157,7 @@ function rerenderUl(filterType, projectName = "") {
 inboxBtn.addEventListener("click", function () {
   rerenderUl("inbox");
   pageTitle.textContent = "Inbox";
+   closeMenu();
 });
 
 highPriorityFilterBtn.addEventListener("click", function () {

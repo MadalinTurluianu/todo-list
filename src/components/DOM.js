@@ -71,12 +71,13 @@ addTaskBtn.addEventListener("click", function () {
   priorityInput.classList.remove("high-priority");
   backdrop.classList.remove("inactive");
   document.querySelector("ul").classList.add("inactive");
+  filtersContainer.classList.add("inactive");
+  addProjectContainer.classList.add("inactive");
 });
 
 inboxBtn.addEventListener("click", function () {
   filtersContainer.classList.add("inactive");
   addProjectContainer.classList.add("inactive");
-  closeMenu();
 });
 
 filtersBtn.addEventListener("click", function () {
@@ -97,11 +98,6 @@ for (let filter of [...filtersContainer.children]) {
 
 // -------------------------MOBILE
 
-navButtons.addEventListener("pointer", function(event) {
-  event.stopPropagation();
-  event.stopImmediatePropagation();
-})
-
 function openMenu() {
   navButtons.classList.add("flex");
   mobileMenu.classList.add("inactive");
@@ -118,19 +114,17 @@ function closeMenu() {
 
 mobileMenu.addEventListener("click", openMenu);
 mobileMenuDiv.addEventListener("click", openMenu);
-mobileBackdrop.addEventListener("click", closeMenu);
-dailyFilterBtn.addEventListener("click", closeMenu);
-navButtons.addEventListener("click", function(event) {
-  event.stopPropagation();
-});
+
 
 export {
   backdrop,
+  mobileBackdrop,
   closeMenu,
   nav,
   addProjectBtn,
   projectsContainer,
   inboxBtn,
+  filtersContainer,
   dailyFilterBtn,
   weeklyFilterBtn,
   highPriorityFilterBtn,

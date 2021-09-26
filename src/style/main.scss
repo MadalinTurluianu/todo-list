@@ -27,12 +27,16 @@ $menu-gradient: linear-gradient(
   rgba(255, 255, 255, 0.774),
   rgba(255, 255, 255, 0.349)
 );
+
+$menu-background: rgba(255, 255, 255, 0.753);
 $contrast-color: rgb(240, 29, 93);
 $dark-font: rgb(103, 67, 187);
+$medium-font: rgb(157, 92, 196);
 $light-font: rgba(255, 255, 255, 0.877);
 $normal-priority: #003f63;
 $shadow: -2px 2px rgba(255, 255, 255, 0.466);
 $border: 1px solid rgba(255, 255, 255, 0.603);
+$contrast-border: 1px solid rgba(103, 67, 187, 0.603);
 $special-font: "Pacifico";
 $normal-font: "Rubik";
 
@@ -85,6 +89,17 @@ $normal-font: "Rubik";
   }
 }
 
+@keyframes fade-in-left {
+  0% {
+    opacity: 0%;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+
 // -----------------------------------STYLE
 
 * {
@@ -129,7 +144,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 20;
   animation: fade-in 1s;
 }
 
@@ -138,7 +153,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
   animation: fade-in 1s;
 }
 
@@ -162,7 +177,7 @@ option {
 nav {
   position: absolute;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   @include display-flex();
   align-items: flex-start;
   justify-content: space-between;
@@ -239,17 +254,19 @@ nav img {
   button {
     color: $dark-font;
   }
-}
 
-.buttons-container {
-  @include display-flex();
-  align-items: center;
-  justify-content: space-between;
-  margin: 0.5rem 0;
+  .buttons-container {
+    @include display-flex();
+    align-items: center;
+    justify-content: space-around;
+    margin: 0.5rem 0;
+    width: 100%;
 
-  button {
-    width: 3rem;
-    padding: 0;
+    button {
+      width: 3rem;
+      padding: 0;
+      font-weight: normal;
+    }
   }
 }
 
@@ -295,7 +312,7 @@ main {
 
 .add-task__form {
   position: absolute;
-  z-index: 3;
+  z-index: 50;
   top: 30vh;
   animation: fade-in-down 0.8s;
   display: grid;
@@ -348,6 +365,14 @@ button:hover,
 button:active,
 button:focus {
   outline: none;
+}
+
+button:hover {
+  color: $contrast-color !important;
+}
+
+.page-title__container button:hover {
+  color: $dark-font !important;
 }
 
 .list-container {
@@ -430,25 +455,56 @@ li p {
   }
 
   .nav-buttons {
+    animation: fade-in-left 0.8s;
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     position: absolute;
-    z-index: 10;
+    z-index: 30;
     top: 0;
     right: 0;
     width: clamp(10rem, 50vw, 40rem);
     height: 100vh;
     margin: 0;
-    background-image: $menu-gradient;
+    background-color: $menu-background;
   }
 
-  .nav-buttons>button{
+  .nav-buttons button {
+    font-size: 1.2rem;
+  }
+
+  .nav-buttons > button {
     margin-top: 5rem;
   }
 
-  .nav-buttons>div {
+  .nav-buttons > div {
     margin-top: 3rem;
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .nav-buttons button {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .wrapper {
+    width: 80%;
+  }
+
+  .filters-container button,
+  .projects-container button {
+    color: $medium-font;
+    font-size: 1.1rem;
+  }
+
+  .add-project__container button {
+    font-size: 1rem;
+  }
+
+  .filters-container,
+  .add-project__container {
+    border-top: $contrast-border;
   }
 }
