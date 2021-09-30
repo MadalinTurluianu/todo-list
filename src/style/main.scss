@@ -67,6 +67,15 @@ $normal-font: "Rubik";
   }
 }
 
+@keyframes fade-out {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
 @keyframes fade-in-down {
   0% {
     opacity: 0%;
@@ -75,6 +84,17 @@ $normal-font: "Rubik";
   100% {
     opacity: 100%;
     transform: translateY(0rem);
+  }
+}
+
+@keyframes fade-in-down-reverse {
+  0% {
+    opacity: 100%;
+    transform: translateY(0rem);
+  }
+  100% {
+    opacity: 0%;
+    transform: translateY(-2rem);
   }
 }
 
@@ -89,6 +109,17 @@ $normal-font: "Rubik";
   }
 }
 
+@keyframes fade-in-right-reverse {
+  0% {
+    opacity: 100%;
+    transform: translateX(0rem);
+  }
+  100% {
+    opacity: 0%;
+    transform: translateX(-3rem);
+  }
+}
+
 @keyframes fade-in-left {
   0% {
     opacity: 0%;
@@ -97,6 +128,17 @@ $normal-font: "Rubik";
   100% {
     opacity: 100%;
     transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-left-reverse {
+  0% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0%;
+    transform: translateX(100%);
   }
 }
 

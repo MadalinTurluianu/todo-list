@@ -119,6 +119,7 @@ mobileMenuDiv.addEventListener("click", openMenu);
 export {
   backdrop,
   mobileBackdrop,
+  navButtons,
   closeMenu,
   nav,
   addProjectBtn,

@@ -6,6 +6,7 @@ import { createProject, removeProject } from "./components/project";
 import {
   backdrop,
   mobileBackdrop,
+  navButtons,
   closeMenu,
   addProjectBtn,
   projectsContainer,
@@ -35,14 +36,24 @@ import {
 const taskList = [];
 
 function closeTaskForm() {
-  taskForm.classList.add("inactive");
-  titleInput.value = "";
-  descriptionInput.value = "";
-  dueDateInput.value = "";
-  priorityInput.value = "normal";
-  projectInput.value = "";
-  backdrop.classList.add("inactive");
-  document.querySelector("ul").classList.remove("inactive");
+  taskForm.style.animation = "fade-in-down-reverse 0.8s";
+  backdrop.style.animation = "fade-out 0.8s";
+  setTimeout(() => {
+    taskForm.style.animation = "";
+    backdrop.style.animation = "";
+    taskForm.classList.add("inactive");
+    titleInput.value = "";
+    descriptionInput.value = "";
+    dueDateInput.value = "";
+    priorityInput.value = "normal";
+    projectInput.value = "";
+    backdrop.classList.add("inactive");
+  }, 800);
+
+  setTimeout(() => {
+    document.querySelector("ul").classList.remove("inactive");
+    rerenderUl("inbox"); 
+  }, 600);
 }
 
 backdrop.addEventListener("click", closeTaskForm);
@@ -58,14 +69,16 @@ taskForm.addEventListener("submit", function (event) {
     projectInput
   );
 
-  task.taskEl.style.animation = "fade-in-right 1s";
-  addTask(listContainer, task, taskList);
   closeTaskForm();
-  rerenderUl("inbox");
+  setTimeout(() => {
+    task.taskEl.style.animation = "fade-in-right 1s";
+    addTask(listContainer, task, taskList);
+  }, 1000);
+
   pageTitle.textContent = "Inbox";
   setTimeout(() => {
-    task.taskEl.style.animation = ""
-  }, 1000);;
+    task.taskEl.style.animation = "";
+  }, 1800);
 
   // ------------------------------------------- Delete task functionality
 
@@ -73,10 +86,13 @@ taskForm.addEventListener("submit", function (event) {
     (element) => element.className === "delete-task__btn"
   )[0];
 
-  deleteTaskBtn.addEventListener(
-    "click",
-    removeTask.bind(null, listContainer, task, taskList)
-  );
+  deleteTaskBtn.addEventListener("click", function () {
+    task.taskEl.style.animation = "fade-in-right-reverse 0.8s";
+    setTimeout(() => {
+      task.taskEl.style.animation = "";
+      removeTask(listContainer, task, taskList);
+    }, 800);
+  });
 });
 
 taskFormCancelBtn.addEventListener("click", closeTaskForm);
@@ -119,14 +135,14 @@ projectForm.addEventListener("submit", function (event) {
 
       let deleteProjectBtn = document.createElement("button");
       deleteProjectBtn.className = "delete-project__btn";
-      deleteProjectBtn.textContent = "Delete"
+      deleteProjectBtn.textContent = "Delete";
 
-      deleteProjectBtn.addEventListener("click", function() {
+      deleteProjectBtn.addEventListener("click", function () {
         removeProject(project.name, taskList, projectInput, projectsContainer);
         rerenderUl("inbox");
         pageTitle.textContent = "Inbox";
         pageTitleContainer.remove(deleteProjectBtn);
-      })
+      });
 
       pageTitleContainer.appendChild(deleteProjectBtn);
     });
@@ -136,13 +152,18 @@ projectForm.addEventListener("submit", function (event) {
 
 // ---MOBILE CLOSE ADD PROJECT FORM
 
-mobileBackdrop.addEventListener("click", function() {
+mobileBackdrop.addEventListener("click", function () {
   closeAddProjectForm();
-  closeMenu();
   addProjectContainer.classList.add("inactive");
   filtersContainer.classList.add("inactive");
-})
-
+  mobileBackdrop.style.animation = "fade-out 0.8s";
+  navButtons.style.animation = "fade-in-left-reverse 0.8s";
+  setTimeout(() => {
+    closeMenu();
+    mobileBackdrop.style.animation = "";
+    navButtons.style.animation = "";
+  }, 800);
+});
 
 // ------------------------------------------- Filter handling
 
@@ -157,7 +178,7 @@ function rerenderUl(filterType, projectName = "") {
 inboxBtn.addEventListener("click", function () {
   rerenderUl("inbox");
   pageTitle.textContent = "Inbox";
-   closeMenu();
+  closeMenu();
 });
 
 highPriorityFilterBtn.addEventListener("click", function () {
