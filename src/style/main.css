@@ -452,6 +452,8 @@ li p {
     display: flex;
     align-items: center;
     margin-top: 1.4rem;
+    cursor: pointer;
+    height: 1.4rem;
   }
   .mobile-menu div {
     width: 0.7rem;

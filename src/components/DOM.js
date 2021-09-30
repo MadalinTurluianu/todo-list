@@ -101,15 +101,23 @@ for (let filter of [...filtersContainer.children]) {
 function openMenu() {
   navButtons.classList.add("flex");
   mobileMenu.classList.add("inactive");
-  mobileMenuDiv.classList.add("inactive");
   mobileBackdrop.classList.remove("inactive");
 }
 
 function closeMenu() {
-  navButtons.classList.remove("flex");
+  addProjectContainer.classList.add("inactive");
+  filtersContainer.classList.add("inactive");
+  mobileBackdrop.style.animation = "fade-out 0.8s";
+  navButtons.style.animation = "fade-in-left-reverse 0.8s";
+  mobileMenu.style.animation = "fade-in 1.6s";
   mobileMenu.classList.remove("inactive");
-  mobileMenuDiv.classList.remove("inactive");
-  mobileBackdrop.classList.add("inactive");
+
+  setTimeout(() => {
+    navButtons.classList.remove("flex");
+    mobileBackdrop.classList.add("inactive");
+    mobileBackdrop.style.animation = "";
+    navButtons.style.animation = "";
+  }, 800);
 }
 
 mobileMenu.addEventListener("click", openMenu);

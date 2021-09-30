@@ -486,6 +486,8 @@ li p {
     @include display-flex();
     align-items: center;
     margin-top: 1.4rem;
+    cursor: pointer;
+    height: 1.4rem;
 
     div {
       width: 0.7rem;

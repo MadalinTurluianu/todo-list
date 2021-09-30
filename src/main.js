@@ -6,12 +6,10 @@ import { createProject, removeProject } from "./components/project";
 import {
   backdrop,
   mobileBackdrop,
-  navButtons,
   closeMenu,
   addProjectBtn,
   projectsContainer,
   inboxBtn,
-  filtersContainer,
   dailyFilterBtn,
   weeklyFilterBtn,
   highPriorityFilterBtn,
@@ -38,11 +36,12 @@ const taskList = [];
 function closeTaskForm() {
   taskForm.style.animation = "fade-in-down-reverse 0.8s";
   backdrop.style.animation = "fade-out 0.8s";
+  rerenderUl("inbox");
 
   setTimeout(() => {
     taskForm.style.animation = "";
     backdrop.style.animation = "";
-    document.querySelector("ul").style.animation = ""
+    document.querySelector("ul").style.animation = "";
     taskForm.classList.add("inactive");
     titleInput.value = "";
     descriptionInput.value = "";
@@ -51,11 +50,6 @@ function closeTaskForm() {
     projectInput.value = "";
     backdrop.classList.add("inactive");
   }, 800);
-
-  setTimeout(() => {
-
-    rerenderUl("inbox");
-  }, 100);
 }
 
 backdrop.addEventListener("click", closeTaskForm);
@@ -70,8 +64,9 @@ taskForm.addEventListener("submit", function (event) {
     priorityInput,
     projectInput
   );
-
+    
   closeTaskForm();
+
   setTimeout(() => {
     task.taskEl.style.animation = "fade-in-right 1s";
     addTask(listContainer, task, taskList);
@@ -80,8 +75,6 @@ taskForm.addEventListener("submit", function (event) {
   setTimeout(() => {
     task.taskEl.style.animation = "";
   }, 1400);
-
-  pageTitle.textContent = "Inbox";
 
   // ------------------------------------------- Delete task functionality
 
@@ -143,11 +136,11 @@ projectForm.addEventListener("submit", function (event) {
       deleteProjectBtn.addEventListener("click", function () {
         removeProject(project.name, taskList, projectInput, projectsContainer);
         rerenderUl("inbox");
-        pageTitle.textContent = "Inbox";
         pageTitleContainer.remove(deleteProjectBtn);
       });
 
       pageTitleContainer.appendChild(deleteProjectBtn);
+      closeMenu();
     });
   }
   closeAddProjectForm();
@@ -157,15 +150,7 @@ projectForm.addEventListener("submit", function (event) {
 
 mobileBackdrop.addEventListener("click", function () {
   closeAddProjectForm();
-  addProjectContainer.classList.add("inactive");
-  filtersContainer.classList.add("inactive");
-  mobileBackdrop.style.animation = "fade-out 0.8s";
-  navButtons.style.animation = "fade-in-left-reverse 0.8s";
-  setTimeout(() => {
-    closeMenu();
-    mobileBackdrop.style.animation = "";
-    navButtons.style.animation = "";
-  }, 800);
+  closeMenu();
 });
 
 // ------------------------------------------- Filter handling
@@ -175,29 +160,40 @@ function rerenderUl(filterType, projectName = "") {
   listContainer.innerHTML = "";
   listContainer.appendChild(newUlList);
   pageTitleContainer.innerHTML = "";
+  pageTitle.textContent =
+    filterType === "inbox"
+      ? "Inbox"
+      : filterType === "high priority"
+      ? "High priority"
+      : filterType === "today"
+      ? "Today"
+      : filterType === "week"
+      ? "This week"
+      : filterType === "project"
+      ? projectName
+      : "";
   pageTitleContainer.appendChild(pageTitle);
+  for (let t of taskList) {
+    t.taskEl.style.animation = "fade-in 1.4s";
+  }
 }
 
 inboxBtn.addEventListener("click", function () {
   rerenderUl("inbox");
-  pageTitle.textContent = "Inbox";
   closeMenu();
 });
 
 highPriorityFilterBtn.addEventListener("click", function () {
   rerenderUl("high priority");
-  pageTitle.textContent = "High priority";
   closeMenu();
 });
 
 dailyFilterBtn.addEventListener("click", function () {
   rerenderUl("today");
-  pageTitle.textContent = "Today";
   closeMenu();
 });
 
 weeklyFilterBtn.addEventListener("click", function () {
   rerenderUl("week");
-  pageTitle.textContent = "This week";
   closeMenu();
 });
