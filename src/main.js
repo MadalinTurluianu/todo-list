@@ -38,9 +38,11 @@ const taskList = [];
 function closeTaskForm() {
   taskForm.style.animation = "fade-in-down-reverse 0.8s";
   backdrop.style.animation = "fade-out 0.8s";
+
   setTimeout(() => {
     taskForm.style.animation = "";
     backdrop.style.animation = "";
+    document.querySelector("ul").style.animation = ""
     taskForm.classList.add("inactive");
     titleInput.value = "";
     descriptionInput.value = "";
@@ -51,9 +53,9 @@ function closeTaskForm() {
   }, 800);
 
   setTimeout(() => {
-    document.querySelector("ul").classList.remove("inactive");
-    rerenderUl("inbox"); 
-  }, 600);
+
+    rerenderUl("inbox");
+  }, 100);
 }
 
 backdrop.addEventListener("click", closeTaskForm);
@@ -73,12 +75,13 @@ taskForm.addEventListener("submit", function (event) {
   setTimeout(() => {
     task.taskEl.style.animation = "fade-in-right 1s";
     addTask(listContainer, task, taskList);
-  }, 1000);
+  }, 400);
 
-  pageTitle.textContent = "Inbox";
   setTimeout(() => {
     task.taskEl.style.animation = "";
-  }, 1800);
+  }, 1400);
+
+  pageTitle.textContent = "Inbox";
 
   // ------------------------------------------- Delete task functionality
 
