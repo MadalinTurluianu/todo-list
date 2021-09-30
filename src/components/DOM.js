@@ -22,9 +22,7 @@ const weeklyFilterBtn = document.querySelector(".weekly-filter");
 const highPriorityFilterBtn = document.querySelector(".hp-filter");
 
 // ---PROJECT FORM CONTENT
-const addProjectContainer = document.querySelector(
-  ".add-project__container"
-);
+const addProjectContainer = document.querySelector(".add-project__container");
 
 const projectForm = document.querySelector(".add-project__form");
 const projectFormInput = projectForm.querySelector("input");
@@ -61,7 +59,7 @@ const taskFormCancelBtn = document.querySelector(
 priorityInput.addEventListener("change", function () {
   if (priorityInput.value === "high") {
     priorityInput.classList.add("high-priority");
-  }else {
+  } else {
     priorityInput.classList.remove("high-priority");
   }
 });
@@ -91,9 +89,9 @@ projectsBtn.addEventListener("click", function () {
 });
 
 for (let filter of [...filtersContainer.children]) {
-  filter.addEventListener("click", function(){
+  filter.addEventListener("click", function () {
     filtersContainer.classList.add("inactive");
-  })
+  });
 }
 
 // -------------------------MOBILE
@@ -105,24 +103,27 @@ function openMenu() {
 }
 
 function closeMenu() {
-  addProjectContainer.classList.add("inactive");
-  filtersContainer.classList.add("inactive");
-  mobileBackdrop.style.animation = "fade-out 0.8s";
-  navButtons.style.animation = "fade-in-left-reverse 0.8s";
-  mobileMenu.style.animation = "fade-in 1.6s";
-  mobileMenu.classList.remove("inactive");
+  let mobile = document.body.clientWidth < 600 ? true : false;
 
-  setTimeout(() => {
-    navButtons.classList.remove("flex");
-    mobileBackdrop.classList.add("inactive");
-    mobileBackdrop.style.animation = "";
-    navButtons.style.animation = "";
-  }, 800);
+  if (mobile) {
+    addProjectContainer.classList.add("inactive");
+    filtersContainer.classList.add("inactive");
+    mobileBackdrop.style.animation = "fade-out 0.8s";
+    navButtons.style.animation = "fade-in-left-reverse 0.8s";
+    mobileMenu.style.animation = "fade-in 1.6s";
+    mobileMenu.classList.remove("inactive");
+
+    setTimeout(() => {
+      navButtons.classList.remove("flex");
+      mobileBackdrop.classList.add("inactive");
+      mobileBackdrop.style.animation = "";
+      navButtons.style.animation = "";
+    }, 800);
+  }
 }
 
 mobileMenu.addEventListener("click", openMenu);
 mobileMenuDiv.addEventListener("click", openMenu);
-
 
 export {
   backdrop,
