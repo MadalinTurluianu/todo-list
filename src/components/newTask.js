@@ -1,13 +1,13 @@
 class Task {
   constructor(title, description, dueDate, priority, project) {
-    this.title = title.value;
-    this.description = description.value;
+    this.title = title;
+    this.description = description;
     this.dueDate =
-      dueDate.value === ""
+      dueDate === ""
         ? ""
-        : new Date(dueDate.value).toString().split(" ").slice(1, 4).join(" ");
-    this.priority = priority.value;
-    this.project = project.value;
+        : new Date(dueDate).toString().split(" ").slice(1, 4).join(" ");
+    this.priority = priority;
+    this.project = project;
   }
 }
 

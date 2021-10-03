@@ -31,7 +31,35 @@ import {
 
 // ------------------------------------------- Tasks handling
 
+const oldTasks = JSON.parse(localStorage.getItem("taskObjects"));
+
 const taskList = [];
+
+if (oldTasks !== null) {
+  for (let obj of oldTasks) {
+    let task = createTask(
+      obj.title,
+      obj.description,
+      obj.dueDate,
+      obj.priority,
+      obj.project
+    );
+    addTask(listContainer, task, taskList);
+
+    let deleteTaskBtn = [...task.taskEl.children].filter(
+      (element) => element.className === "delete-task__btn"
+    )[0];
+  
+    deleteTaskBtn.addEventListener("click", function () {
+      task.taskEl.style.animation = "fade-in-right-reverse 0.8s";
+      setTimeout(() => {
+        task.taskEl.style.animation = "";
+        removeTask(listContainer, task, taskList);
+        localStorage.setItem("taskObjects", JSON.stringify(taskList.map(task => task.taskObj)));
+      }, 800);
+    });
+  }
+}
 
 function closeTaskForm() {
   taskForm.style.animation = "fade-in-down-reverse 0.8s";
@@ -58,18 +86,19 @@ taskForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   let task = createTask(
-    titleInput,
-    descriptionInput,
-    dueDateInput,
-    priorityInput,
-    projectInput
+    titleInput.value,
+    descriptionInput.value,
+    dueDateInput.value,
+    priorityInput.value,
+    projectInput.value
   );
-    
+
   closeTaskForm();
 
   setTimeout(() => {
     task.taskEl.style.animation = "fade-in-right 1s";
     addTask(listContainer, task, taskList);
+    localStorage.setItem("taskObjects", JSON.stringify(taskList.map(task => task.taskObj)));
   }, 400);
 
   setTimeout(() => {
@@ -87,6 +116,7 @@ taskForm.addEventListener("submit", function (event) {
     setTimeout(() => {
       task.taskEl.style.animation = "";
       removeTask(listContainer, task, taskList);
+      localStorage.setItem("taskObjects", JSON.stringify(taskList.map(task => task.taskObj)));
     }, 800);
   });
 });
