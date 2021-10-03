@@ -45,7 +45,6 @@ pageTitleContainer.appendChild(pageTitle);
 // ---TASK FORM CONTENT
 
 const taskForm = document.querySelector(".add-task__form");
-const titleInput = document.querySelector("#form-title");
 const descriptionInput = document.querySelector("#form-description");
 const dueDateInput = document.querySelector("#form-due-date");
 const priorityInput = document.querySelector("#form-priority");
@@ -149,7 +148,6 @@ export {
   ul,
   listContainer,
   taskForm,
-  titleInput,
   descriptionInput,
   dueDateInput,
   priorityInput,

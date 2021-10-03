@@ -21,7 +21,6 @@ import {
   pageTitle,
   listContainer,
   taskForm,
-  titleInput,
   descriptionInput,
   dueDateInput,
   priorityInput,
@@ -38,7 +37,6 @@ const taskList = [];
 if (oldTasks !== null) {
   for (let obj of oldTasks) {
     let task = createTask(
-      obj.title,
       obj.description,
       obj.dueDate,
       obj.priority,
@@ -61,6 +59,10 @@ if (oldTasks !== null) {
   }
 }
 
+descriptionInput.addEventListener("change", function() {
+  descriptionInput.value = descriptionInput.value.trim();
+})
+
 function closeTaskForm() {
   taskForm.style.animation = "fade-in-down-reverse 0.8s";
   backdrop.style.animation = "fade-out 0.8s";
@@ -71,7 +73,6 @@ function closeTaskForm() {
     backdrop.style.animation = "";
     document.querySelector("ul").style.animation = "";
     taskForm.classList.add("inactive");
-    titleInput.value = "";
     descriptionInput.value = "";
     dueDateInput.value = "";
     priorityInput.value = "normal";
@@ -86,7 +87,6 @@ taskForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   let task = createTask(
-    titleInput.value,
     descriptionInput.value,
     dueDateInput.value,
     priorityInput.value,

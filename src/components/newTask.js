@@ -1,6 +1,5 @@
 class Task {
-  constructor(title, description, dueDate, priority, project) {
-    this.title = title;
+  constructor(description, dueDate, priority, project) {
     this.description = description;
     this.dueDate =
       dueDate === ""
@@ -11,13 +10,14 @@ class Task {
   }
 }
 
-function createTask(title, description, dueDate, priority, project) {
-  const taskObj = new Task(title, description, dueDate, priority, project);
+function createTask(description, dueDate, priority, project) {
+  const taskObj = new Task(description, dueDate, priority, project);
 
   let taskEl = document.createElement("li");
 
   let taskTitle = document.createElement("h2");
-  taskTitle.textContent = taskObj.title;
+  taskTitle.textContent = taskObj.project === "" ? "" : taskObj.project;
+  taskTitle.className = "task-title";
 
   let taskDescription = document.createElement("p");
   taskDescription.textContent = taskObj.description;
@@ -35,10 +35,18 @@ function createTask(title, description, dueDate, priority, project) {
   let deleteTaskBtn = document.createElement("button");
   deleteTaskBtn.className = "delete-task__btn";
 
-  taskEl.appendChild(deleteTaskBtn);
-  taskEl.appendChild(taskTitle);
+  if (taskTitle.textContent !== "") {
+    taskEl.appendChild(taskTitle);
+  }else {
+    taskDueDate.style.gridColumn = "1 / 3"
+  }
+
+  if (taskDueDate.textContent !== "") {
+    taskEl.appendChild(taskDueDate);
+  }
+
   taskEl.appendChild(taskDescription);
-  taskEl.appendChild(taskDueDate);
+  taskEl.appendChild(deleteTaskBtn);
 
   return { taskEl, taskObj };
 }

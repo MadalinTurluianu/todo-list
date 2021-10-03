@@ -403,8 +403,7 @@ li {
   align-items: center;
   justify-content: start;
   grid-template-columns: auto auto;
-  grid-template-rows: 2rem 1.5rem;
-  grid-template-areas: "TITLE DATE" "DESCRIPTION DESCRIPTION";
+  grid-template-rows: 2rem auto;
   width: clamp(10rem, 90%, 50rem);
   margin: 0;
   margin-bottom: 2rem;
@@ -414,27 +413,23 @@ li {
 }
 
 .task-title {
-  grid-area: TITLE;
-}
-
-.task-description {
-  grid-area: DESCRIPTION;
+  margin-right: 0.4rem;
+  font-size: 1.3rem;
 }
 
 .task-date {
-  grid-area: DATE;
-  font-size: 0.8rem;
-  margin-left: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .delete-task__btn {
   position: absolute;
   right: 1.2rem;
   top: center;
-  border-radius: 5px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.603);
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.2rem;
+  height: 1.2rem;
   background-image: none;
   background-color: transparent;
 }
