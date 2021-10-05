@@ -59,6 +59,48 @@ if (oldTasks !== null) {
   }
 }
 
+const oldProjectsList = JSON.parse(localStorage.getItem("projectsList"));
+
+const projectsList = [];
+
+if (oldProjectsList !== null) {
+  for (let projectName of oldProjectsList) {
+    let project = createProject(
+      projectName,
+      projectInput,
+      projectsContainer
+    );
+
+    projectsList.push(projectName);
+    localStorage.setItem("projectsList", JSON.stringify(projectsList));
+
+
+    project.button.addEventListener("click", function () {
+      rerenderUl("project", projectName);
+
+      // ---REMOVE PROJECT
+
+      pageTitleContainer.innerHTML = "";
+      pageTitleContainer.appendChild(pageTitle);
+      pageTitle.textContent = projectName;
+      addProjectContainer.classList.add("inactive");
+
+      let deleteProjectBtn = document.createElement("button");
+      deleteProjectBtn.className = "delete-project__btn";
+      deleteProjectBtn.textContent = "Delete";
+
+      deleteProjectBtn.addEventListener("click", function () {
+        removeProject(projectName, taskList, projectInput, projectsContainer);
+        projectsList.splice(projectsList.indexOf(projectName), 1)
+        localStorage.setItem("projectsList", JSON.stringify(projectsList));
+        rerenderUl("inbox");
+      });
+
+      pageTitleContainer.appendChild(deleteProjectBtn);
+    })
+  }
+}
+
 descriptionInput.addEventListener("change", function() {
   descriptionInput.value = descriptionInput.value.trim();
 })
@@ -149,6 +191,11 @@ projectForm.addEventListener("submit", function (event) {
       projectInput,
       projectsContainer
     );
+
+    projectsList.push(project.name);
+    localStorage.setItem("projectsList", JSON.stringify(projectsList));
+
+
     project.button.addEventListener("click", function () {
       rerenderUl("project", project.name);
 
@@ -165,8 +212,9 @@ projectForm.addEventListener("submit", function (event) {
 
       deleteProjectBtn.addEventListener("click", function () {
         removeProject(project.name, taskList, projectInput, projectsContainer);
+        projectsList.splice(projectsList.indexOf(project.name), 1)
+        localStorage.setItem("projectsList", JSON.stringify(projectsList));
         rerenderUl("inbox");
-        pageTitleContainer.remove(deleteProjectBtn);
       });
 
       pageTitleContainer.appendChild(deleteProjectBtn);

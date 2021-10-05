@@ -41,6 +41,10 @@ function createTask(description, dueDate, priority, project) {
     taskDueDate.style.gridColumn = "1 / 3"
   }
 
+  if (taskTitle.textContent !== "" || taskDueDate.textContent !== "") {
+    taskDescription.style.gridRow = "2 / 3";
+  }
+
   if (taskDueDate.textContent !== "") {
     taskEl.appendChild(taskDueDate);
   }
