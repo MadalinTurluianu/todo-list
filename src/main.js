@@ -185,7 +185,7 @@ projectFormCancelBtn.addEventListener("click", closeAddProjectForm);
 projectForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  if (projectFormInput.value.trim() !== "") {
+  if (projectFormInput.value.trim() !== "" && !projectsList.includes(projectFormInput.value.trim())) {
     let project = createProject(
       projectFormInput.value.trim(),
       projectInput,
