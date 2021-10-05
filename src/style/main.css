@@ -450,7 +450,7 @@ li p {
 
 @media (max-width: 600px) {
   .backdrop {
-    height: 100vh;
+    height: 120vh;
   }
 
   .mobile-menu {
