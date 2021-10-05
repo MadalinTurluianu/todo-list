@@ -449,6 +449,10 @@ li p {
 }
 
 @media (max-width: 600px) {
+  .backdrop {
+    height: 100vh;
+  }
+
   .mobile-menu {
     display: -webkit-box;
     display: -webkit-flex;

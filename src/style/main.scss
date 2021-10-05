@@ -484,6 +484,9 @@ li p {
 }
 
 @media (max-width: 600px) {
+  .backdrop {
+    height: 100vh;
+  }
   .mobile-menu {
     @include display-flex();
     align-items: center;
