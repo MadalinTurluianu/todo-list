@@ -327,6 +327,7 @@ main {
   border-bottom: $border;
   margin-bottom: 1.5rem;
   padding-bottom: 0.3rem;
+  animation: fade-in 1s;
 
   h2 {
     font-family: Pacifico;
@@ -347,6 +348,7 @@ main {
 }
 
 .add-task__btn {
+  animation: fade-in 1s;
   width: 5rem;
   background-image: $glass-gradient;
   padding: 0.5rem 0;

@@ -26,6 +26,7 @@ import {
   priorityInput,
   projectInput,
   taskFormCancelBtn,
+  addTaskBtn,
 } from "./components/DOM";
 
 // ------------------------------------------- Tasks handling
@@ -101,6 +102,8 @@ if (oldProjectsList !== null) {
   }
 }
 
+// ------------------------------------ADD TASK FORM LOGIC
+
 descriptionInput.addEventListener("change", function() {
   descriptionInput.value = descriptionInput.value.trim();
 })
@@ -109,6 +112,8 @@ function closeTaskForm() {
   taskForm.style.animation = "fade-in-down-reverse 0.8s";
   backdrop.style.animation = "fade-out 0.8s";
   rerenderUl("inbox");
+  addTaskBtn.classList.remove("inactive");
+  pageTitleContainer.classList.remove("inactive");
 
   setTimeout(() => {
     taskForm.style.animation = "";
@@ -127,7 +132,7 @@ backdrop.addEventListener("click", closeTaskForm);
 
 taskForm.addEventListener("submit", function (event) {
   event.preventDefault();
-
+  
   let task = createTask(
     descriptionInput.value,
     dueDateInput.value,

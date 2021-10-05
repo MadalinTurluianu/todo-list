@@ -64,6 +64,8 @@ priorityInput.addEventListener("change", function () {
 });
 
 addTaskBtn.addEventListener("click", function () {
+  addTaskBtn.classList.add("inactive");
+  pageTitleContainer.classList.add("inactive");
   taskForm.classList.remove("inactive");
   priorityInput.classList.remove("high-priority");
   backdrop.classList.remove("inactive");
